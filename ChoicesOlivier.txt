@@ -1,0 +1,2 @@
+Array for the map of points, as we will need to access them pretty often, but we only need to set them once for the entire game 
+ArrayList fot the list of entities on one floor to have an easier dynamic allocation, but we also mostly need to access them
