@@ -1,9 +1,10 @@
 package enterGameNameHere;
 
-public class Point {
+public class Point{
     protected int x;
     protected int y;
     protected boolean isWall;
+    protected DisplayCharacter displayCharacter;
 
     public Point(int x, int y) {
         this.x = x;
