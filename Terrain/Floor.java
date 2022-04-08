@@ -1,6 +1,7 @@
-package enterGameNameHere;
+package Terrain;
 
 import java.util.ArrayList;
+import enterGameNameHere.Races.*;
 
 public class Floor {
     protected Point[][] map;

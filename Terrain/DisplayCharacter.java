@@ -1,4 +1,4 @@
-package enterGameNameHere;
+package Terrain;
 
 public enum DisplayCharacter {
     CORNER('+'), WALL_VERTICAL('|'), WALL_HORIZONTAL('-'), PLAYER('O'), MONSTER(' '), EMPTY(' ');

@@ -1,4 +1,4 @@
-package enterGameNameHere;
+package Terrain;
 
 public class Point{
     protected int x;
