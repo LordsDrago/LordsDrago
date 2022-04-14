@@ -1,10 +1,10 @@
 package Terrain;
 
 public class Point{
-    protected int x;
-    protected int y;
-    protected boolean isWall;
-    protected DisplayCharacter displayCharacter;
+    private int x;
+    private int y;
+    private boolean isWall;
+    private DisplayCharacter displayCharacter;
 
     public Point(int x, int y) {
         this.x = x;
@@ -29,6 +29,14 @@ public class Point{
     }
 
     /**
+     * Sets the character displayed representing the point
+     * @param character the new character from the DisplayCharacter enum
+     */
+    public void setDisplayCharacter(DisplayCharacter character) {
+        this.displayCharacter = character;
+    }
+
+    /**
      * Gets the value of x
      * @return the current value of the coordinate x
      */
@@ -45,10 +53,22 @@ public class Point{
     }
 
     /**
+     * Gets the character displayed representing the point
+     * @return the character from the DisplayCharacter enum
+     */
+    public DisplayCharacter getDisplayCharacter() {
+        return this.displayCharacter;
+    }
+
+    /**
      * Changes the wall property of the point
      */
     public void toggleIsWall() {
         this.isWall = this.isWall == false;
+    }
+
+    public boolean getIsWall() {
+        return this.isWall;
     }
 
     @Override
