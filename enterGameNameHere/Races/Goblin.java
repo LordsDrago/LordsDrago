@@ -7,4 +7,8 @@ public class Goblin extends Evil implements Magic {
         super(specie , strength);
     }
 
+    public void castSpell(){
+        
+    }
+
 }

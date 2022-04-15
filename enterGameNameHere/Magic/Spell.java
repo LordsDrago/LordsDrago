@@ -9,25 +9,19 @@ public enum Spell {
     Water_7("Water Burst",75,40), Water_8("Acid Beam",85,25), Water_9("Typhoon",95,10),
     Grass_1("Bullet Seed",25,100), Grass_2("Leafage",35,80), Grass_3("Branch Poke",45,70),
     Grass_4("Razor Leaf",55,60), Grass_5("Needle Arm",60,55), Grass_6("Horn Leech",65,50),
-    Grass_7("Wood Hammer",75,40), Grass_8("Power Whip",85,25), Grass_9("Solar Blade",95,10) 
+    Grass_7("Wood Hammer",75,40), Grass_8("Power Whip",85,25), Grass_9("Solar Blade",95,10); 
 
-    private final char spellName;
+    private final String spellName;
     private final int ap;
     private final int speed;
 
-    private SpellName(char Name){
-        this.speelName = Name;
+    private Spell(String spellName, int ap , int speed){
+        this.spellName = spellName;
+        this.ap = ap;
+        this.speed = speed;
     }
 
-    private Ap(int Attack){
-        this.ap = Attack;
-    }
-
-    private Speed(int Speed){
-        this.speed = Speed;
-    }
-
-    public char getSpellName(){
+    public String getSpellName(){
         return this.spellName;
     }
 
