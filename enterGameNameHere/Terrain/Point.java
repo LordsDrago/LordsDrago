@@ -6,6 +6,11 @@ public class Point{
     private boolean isWall;
     private DisplayCharacter displayCharacter;
 
+    /**
+     * Constructor to create a point
+     * @param x the X coordinate of the point
+     * @param y the Y coordinate of the point
+     */
     public Point(int x, int y) {
         this.x = x;
         this.y = y;

@@ -34,7 +34,7 @@ public class Floor {
     private void initFloor(int size) {
         for(int i=0; i<size; i++)
             for(int j=0; j<size; j++){
-                this.map[i][j] = new Point(i, j);
+                this.map[i][j] = new Point(i, j); // instanciates points for the whole map
             }
         this.initExtWalls();
         this.initIntWalls();
@@ -83,11 +83,11 @@ public class Floor {
         for(int i=0; i<mapLength; i++)
             for(int j=0; j<mapLength; j++){
                 if(this.map[i][j].getIsWall()){
-                    if(i==0 && j==0 || i==0 && j==mapLength-1 || i==mapLength-1 && j==0 || i==mapLength-1 && j==mapLength-1)
+                    if(i==0 && j==0 || i==0 && j==mapLength-1 || i==mapLength-1 && j==0 || i==mapLength-1 && j==mapLength-1) // checks for the corners
                         Floor.check3Neighbors(this.map, i, j);
-                    else if(i==0 || j==0 || i==mapLength-1 || j==mapLength-1)
+                    else if(i==0 || j==0 || i==mapLength-1 || j==mapLength-1) // checks for the borders
                         Floor.check5Neighbors(this.map, i, j);
-                    else 
+                    else // checks for the rest
                         Floor.check8Neighbors(this.map, i, j);
                 }
                 else 
@@ -104,7 +104,7 @@ public class Floor {
     private static void check8Neighbors(Point[][] map, int curY, int curX) {
         int cornerMissing = 0, verticalMissing = 0, horizontalMissing = 0;
         Point temp;
-        for(int i=-1; i<=1; i++)
+        for(int i=-1; i<=1; i++) // Goes over all the 9 points in a 3 * 3 square around the current point and checks which points are not walls
             for(int j=-1; j<=1; j++){
                 temp = map[curY + i][curX + j];
                 if(temp.getIsWall() == false){
@@ -117,7 +117,7 @@ public class Floor {
                 }
             }
         
-        if(horizontalMissing >= 1 && verticalMissing >= 1)
+        if(horizontalMissing >= 1 && verticalMissing >= 1) // Checks the number of missing walls to determine the symbol the current wall should be reprented by
             map[curY][curX].setDisplayCharacter(DisplayCharacter.CORNER);
         else if(horizontalMissing >= 1)
             map[curY][curX].setDisplayCharacter(DisplayCharacter.WALL_VERTICAL);
@@ -139,7 +139,7 @@ public class Floor {
         int cornerMissing = 0, sideMissing = 0;
         Point temp;
 
-        for(int i=-1; i<=1; i++){
+        for(int i=-1; i<=1; i++){ // Goes over all the surrounding points around the current wall. As we are on a border, we have to adapt in which direction they are checked to not raise an error
             if(curY == 0)
                 temp = map[curY + 1][curX + i];
             else if(curY == map.length - 1)
@@ -156,7 +156,7 @@ public class Floor {
         }
 
     
-        if(sideMissing != 0 && (curX == 0 || curX == map.length - 1))
+        if(sideMissing != 0 && (curX == 0 || curX == map.length - 1)) // Checks the number of missing walls to determine the symbol the current wall should be reprented by
             map[curY][curX].setDisplayCharacter(DisplayCharacter.WALL_VERTICAL);
         else if(sideMissing != 0 && (curY == 0 || curY == map.length - 1))
             map[curY][curX].setDisplayCharacter(DisplayCharacter.WALL_HORIZONTAL);
@@ -172,7 +172,7 @@ public class Floor {
      * @param curY the Y index of the selected point
      * @param curX the X index of the selected point
      */
-    private static void check3Neighbors(Point[][] map, int curY, int curX) {
+    private static void check3Neighbors(Point[][] map, int curY, int curX) { // As we are on a corner and we have set exterior walls all around the map, we only check the state of the point on the corner of the inside map
         if((curY == 0 && curX == 0 && map[curY + 1][curX + 1].getIsWall() == false) || 
         (curY == 0 && curX == map.length - 1 && map[curY + 1][curX - 1].getIsWall() == false) || 
         (curY == map.length - 1 && curX == 0 && map[curY - 1][curX + 1].getIsWall() == false) || 
