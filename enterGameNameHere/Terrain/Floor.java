@@ -66,8 +66,7 @@ public class Floor {
 
     private void initMapString() {
         Random rd = new Random();
-        // this.mapString = mapList[rd.nextInt(10)];
-        this.mapString = mapList[0];
+        this.mapString = mapList[rd.nextInt(10)];
     }
 
     /**
