@@ -13,7 +13,7 @@ public class Floor {
 
     /**
      * Floor constructor, creates a 2D array of Points which represents the map
-     * @param size the size of the map
+     * @param size the size of the map (always 15, as this constructor is private)
      */
     private Floor(int size){
         this.map = new Point[size + 2][size + 2];
