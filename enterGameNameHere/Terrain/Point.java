@@ -67,12 +67,11 @@ public class Point{
         this.isWall = this.isWall == false;
     }
 
+    /**
+     * Gets the isWall property of a point
+     * @return a boolean representing the isWall property
+     */
     public boolean getIsWall() {
         return this.isWall;
-    }
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + " [isWall=" + isWall + ", x=" + x + ", y=" + y + "]";
     }
 }
