@@ -1,16 +1,19 @@
 package enterGameNameHere.Races;
 
+import enterGameNameHere.Point;
+
 public abstract class Entity {
     protected String specie;
     protected int strength;
-    protected int hp;
+    protected double hp;
+    protected Point position;
 
-    public Entity(String specie , int strength){
+  public Entity(String specie , int strength){
       this.specie = specie;
       this.strength = strength;
     }
 
-    public void say(){
+  public void say(){
         System.out.println("I am a "+specie+" and I will kill you !");
     }
     public void setSpecieName(String specie){
@@ -25,7 +28,7 @@ public abstract class Entity {
       this.hp = hp;
   }
 
-  public int getHp(){
+  public double getHp(){
       return this.hp;
   }
 
@@ -39,8 +42,13 @@ public abstract class Entity {
 
   public abstract void moveTo();
 
-  public void takeDamage(int damage){
-      this.hp -= damage; 
+  public double pourcentage(int number , int damage){
+      number = ((damage*number)/100);
+      return number;
+  }
+
+  public void attack(Entity ennemy , int speed, int strength , int damage){
+      ennemy.hp -= damage;  
   }
 
 }
