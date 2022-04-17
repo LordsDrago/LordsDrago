@@ -7,10 +7,12 @@ public abstract class Entity {
     protected int strength;
     protected double hp;
     protected Point position;
+    protected String element; // Ceci est un humain de type FEU allez sur le lien : https://github.com/LordsDrago/Projet-Advanced-Prog
 
-  public Entity(String specie , int strength){
+  public Entity(String specie , int strength , String element){
       this.specie = specie;
       this.strength = strength;
+      this.element = element;
     }
 
   public void say(){
@@ -53,6 +55,14 @@ public abstract class Entity {
    */
   public int getStrength(){
       return this.strength;
+  }
+
+  public void setPoint(Point newPosition){
+      this.position = newPosition;
+  }
+
+  public Point getPoint(){
+      return this.position;
   }
 
   public abstract void moveTo();
