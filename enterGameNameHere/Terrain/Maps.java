@@ -17,7 +17,10 @@ public enum Maps {
         "...............",
         "XXXXXXX........",
         "XXXXXXX........"
-        }), 
+        },
+        new Point(2, 2),
+        new Point(15, 15)
+        ), 
     MAP2(new String[] {
         "....XXXXX......",
         "......XXXXXX...",
@@ -34,7 +37,10 @@ public enum Maps {
         "..........XXXXX",
         "...........XXXX",
         "...........XXXX"
-        }),
+        },
+        new Point(1, 1),
+        new Point(6, 15)
+        ),
     MAP3(new String[] {
         "............XXX",
         "..............X",
@@ -51,7 +57,10 @@ public enum Maps {
         "XX.............",
         "XXXXX..........",
         "XXXXXXXXX......"
-        }), 
+        },
+        new Point(1, 1),
+        new Point(15, 15)
+        ), 
     MAP4(new String[] {
         "XX.........XXXX",
         "X.............X",
@@ -68,7 +77,10 @@ public enum Maps {
         "....X.........X",
         "X............XX",
         "XXXXX.......XXX"
-        }), 
+        },
+        new Point(7, 1),
+        new Point(8, 15)
+        ), 
     MAP5(new String[] {
         ".....XXXXXXXXXX",
         ".......XXXXXXXX",
@@ -85,7 +97,10 @@ public enum Maps {
         "XXXXX..........",
         "XXXXXXXX.......",
         "XXXXXXXXXX....."
-        }), 
+        },
+        new Point(1, 1),
+        new Point(15, 15)
+        ), 
     MAP6(new String[] {
         ".X.....XXX...X.",
         ".X.X.X...X.X.X.",
@@ -102,7 +117,10 @@ public enum Maps {
         ".XXXXXXX.X.XXXX",
         "...X...X...XXXX",
         ".X...X...X.XXXX"
-        }), 
+        },
+        new Point(1, 1),
+        new Point(15, 1)
+        ), 
     MAP7(new String[] {
         "...............",
         "...............",
@@ -119,7 +137,10 @@ public enum Maps {
         "...............",
         ".....XXXXX.....",
         "...XXXXXXXXX..."
-        }), 
+        },
+        new Point(8, 1),
+        new Point(8, 13)
+        ), 
     MAP8(new String[] {
         "...............",
         "...............",
@@ -136,7 +157,10 @@ public enum Maps {
         "..X....XX..XX..",
         "...............",
         "..............."
-        }), 
+        },
+        new Point(1, 1),
+        new Point(15, 15)
+        ), 
     MAP9(new String[] {
         ".....XXXXX.....",
         "..........XX...",
@@ -153,7 +177,10 @@ public enum Maps {
         "..X..XXXXX..X..",
         "...XX..........",
         ".....XXXXX....."
-        }), 
+        },
+        new Point(1, 1),
+        new Point(15, 15)
+        ), 
     MAP10(new String[] {
         "...X.X....X....",
         "..XXXXXXXXXXXXX",
@@ -170,12 +197,20 @@ public enum Maps {
         "XXXX.XXX.XXX.XX",
         "...X.X....X....",
         "...X......X...."
-        });
+        },
+        new Point(1, 1),
+        new Point(15, 15)
+        );
 
     private final String[] map;
+    private final Point playerStart;
+    private final Point mapEnd;
 
-    private Maps(String[] map){
+
+    private Maps(String[] map, Point start, Point end){
         this.map = map;
+        this.playerStart = start;
+        this.mapEnd = end;
     }
 
     /**
@@ -183,5 +218,21 @@ public enum Maps {
      */
     public String[] getMap() {
         return this.map;
+    }
+
+    /**
+     * Returns a point with the position of the player when starting the map
+     * @return the point with the x and y coordinates of the player at the start of the map
+     */
+    public Point getPlayerStart(){
+        return this.playerStart;
+    }
+
+    /**
+     * Returns a point with the position of the exit of the map
+     * @return the point with the x and y coordinates of the end of the map
+     */
+    public Point getMapEnd(){
+        return this.mapEnd;
     }
 }
