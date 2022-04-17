@@ -205,4 +205,8 @@ public class Floor {
             System.out.print("\n");
         }
     }
+
+    public static void checkPoint(String direction, Good player) {
+        Point curPoint = player.get
+    }
 }
