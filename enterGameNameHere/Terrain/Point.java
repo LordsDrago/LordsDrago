@@ -3,7 +3,10 @@ package enterGameNameHere.Terrain;
 public class Point{
     private int x;
     private int y;
-    private boolean isWall;
+    private boolean isWall = false;
+    private boolean isPlayer = false;
+    private boolean isMonster = false;
+    private boolean isEnd = false;
     private DisplayCharacter displayCharacter;
 
     /**
@@ -14,7 +17,6 @@ public class Point{
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
-        this.isWall = false;
     }
 
     /**
@@ -73,10 +75,55 @@ public class Point{
     }
 
     /**
+     * Changes the player property of the point
+     */
+    public void toggleIsPlayer() {
+        this.isPlayer = this.isPlayer == false;
+    }
+
+    /**
+     * Changes the monster property of the point
+     */
+    public void toggleIsMonster() {
+        this.isMonster = this.isMonster == false;
+    }
+
+    /**
+     * Changes the end property of the point
+     */
+    public void toggleIsEnd() {
+        this.isEnd = this.isEnd == false;
+    }
+
+    /**
      * Gets the isWall property of a point
      * @return a boolean representing the isWall property
      */
     public boolean getIsWall() {
         return this.isWall;
+    }
+
+    /**
+     * Gets the isPlayer property of a point
+     * @return a boolean representing the isPlayer property
+     */
+    public boolean getIsPlayer() {
+        return this.isPlayer;
+    }
+
+    /**
+     * Gets the isMonster property of a point
+     * @return a boolean representing the isMonster property
+     */
+    public boolean getIsMonster() {
+        return this.isMonster;
+    }
+
+    /**
+     * Gets the isEnd property of a point
+     * @return a boolean representing the isEnd property
+     */
+    public boolean getIsEnd() {
+        return this.isEnd;
     }
 }

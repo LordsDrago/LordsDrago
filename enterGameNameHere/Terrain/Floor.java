@@ -1,14 +1,14 @@
 package enterGameNameHere.Terrain;
 
-import java.util.ArrayList;
 import enterGameNameHere.Races.*;
 import java.util.Random;
 
 public class Floor {
-    protected static Maps[] mapList = {Maps.MAP1, Maps.MAP2, Maps.MAP3, Maps.MAP4, Maps.MAP5, Maps.MAP6, Maps.MAP7, Maps.MAP8, Maps.MAP9, Maps.MAP10};
+    protected static final Maps[] mapList = {Maps.MAP1, Maps.MAP2, Maps.MAP3, Maps.MAP4, Maps.MAP5, Maps.MAP6, Maps.MAP7, Maps.MAP8, Maps.MAP9, Maps.MAP10};
     protected Maps mapString;
     protected Point[][] map;
-    protected ArrayList<Entity> entities;
+    protected Evil[] monsters;
+    protected Good player;
 
 
     /**
@@ -38,6 +38,7 @@ public class Floor {
             }
         this.initExtWalls();
         this.initIntWalls();
+        this.initStartEnd();
         this.setDisplayCharacters();
     }
 
@@ -75,9 +76,16 @@ public class Floor {
         this.mapString = mapList[rd.nextInt(10)];
     }
 
+    private void initStartEnd() {
+        Point start = this.mapString.getPlayerStart();
+        Point end = this.mapString.getMapEnd();
+        this.map[start.getY()][start.getX()].toggleIsPlayer();
+        this.map[end.getY()][end.getX()].toggleIsEnd();
+    }
+
     /**
      * Goes over the whole map to define the character which will be shown for every point
-     */
+     */   
     private void setDisplayCharacters() {
         int mapLength = this.map.length;
         for(int i=0; i<mapLength; i++)
@@ -90,6 +98,10 @@ public class Floor {
                     else // checks for the rest
                         Floor.check8Neighbors(this.map, i, j);
                 }
+                else if(this.map[i][j].getIsPlayer())
+                    this.map[i][j].setDisplayCharacter(DisplayCharacter.PLAYER);
+                else if(this.map[i][j].getIsEnd())
+                    this.map[i][j].setDisplayCharacter(DisplayCharacter.EXIT);
                 else 
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.EMPTY);
             }
