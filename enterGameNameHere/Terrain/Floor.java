@@ -8,7 +8,8 @@ public class Floor {
     protected static final Maps[] mapList = {Maps.MAP1, Maps.MAP2, Maps.MAP3, Maps.MAP4, Maps.MAP5, Maps.MAP6, Maps.MAP7, Maps.MAP8, Maps.MAP9, Maps.MAP10};
     protected Maps mapString;
     protected Point[][] map;
-    protected ArrayList<Entity> entities;
+    protected Evil[] monsters;
+    protected Good player;
 
 
     /**
