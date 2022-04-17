@@ -9,6 +9,10 @@ public enum DisplayCharacter {
         this.characterPoint = symbol;
     }
 
+    /**
+     * Function to get the char assigned to the enum object
+     * @return the character associated to the enum object
+     */
     public char getCharacter(){
         return this.characterPoint;
     }

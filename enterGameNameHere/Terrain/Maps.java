@@ -178,6 +178,9 @@ public enum Maps {
         this.map = map;
     }
 
+    /**
+     * Returns the array of String used to create the map
+     */
     public String[] getMap() {
         return this.map;
     }

@@ -13,7 +13,7 @@ public class Floor {
 
     /**
      * Floor constructor, creates a 2D array of Points which represents the map
-     * @param size the size of the map
+     * @param size the size of the map (always 15, as this constructor is private)
      */
     private Floor(int size){
         this.map = new Point[size + 2][size + 2];
@@ -34,7 +34,7 @@ public class Floor {
     private void initFloor(int size) {
         for(int i=0; i<size; i++)
             for(int j=0; j<size; j++){
-                this.map[i][j] = new Point(i, j);
+                this.map[i][j] = new Point(i, j); // instanciates points for the whole map
             }
         this.initExtWalls();
         this.initIntWalls();
@@ -55,6 +55,9 @@ public class Floor {
             this.map[this.map.length - 1][i].toggleIsWall();
     }
 
+    /**
+     * Reads the map chosen for the floor (defined in the enum Maps) and translates the 'X's to walls
+     */
     private void initIntWalls() {
         this.initMapString();
         for(int i=1; i<=this.map.length - 2; i++)
@@ -64,6 +67,9 @@ public class Floor {
             }
     }
 
+    /**
+     * Chooses a random map among the 10 available in the array mapList
+     */
     private void initMapString() {
         Random rd = new Random();
         this.mapString = mapList[rd.nextInt(10)];
@@ -77,11 +83,11 @@ public class Floor {
         for(int i=0; i<mapLength; i++)
             for(int j=0; j<mapLength; j++){
                 if(this.map[i][j].getIsWall()){
-                    if(i==0 && j==0 || i==0 && j==mapLength-1 || i==mapLength-1 && j==0 || i==mapLength-1 && j==mapLength-1)
+                    if(i==0 && j==0 || i==0 && j==mapLength-1 || i==mapLength-1 && j==0 || i==mapLength-1 && j==mapLength-1) // checks for the corners
                         Floor.check3Neighbors(this.map, i, j);
-                    else if(i==0 || j==0 || i==mapLength-1 || j==mapLength-1)
+                    else if(i==0 || j==0 || i==mapLength-1 || j==mapLength-1) // checks for the borders
                         Floor.check5Neighbors(this.map, i, j);
-                    else 
+                    else // checks for the rest
                         Floor.check8Neighbors(this.map, i, j);
                 }
                 else 
@@ -89,10 +95,16 @@ public class Floor {
             }
     }
 
+    /**
+     * Interprets the 8 neighbors surrounding a point so as to determine the character that will represent it on-screen
+     * @param map the map of the current floor, represented as a 2D array of Points
+     * @param curY the Y index of the selected point
+     * @param curX the X index of the selected point
+     */
     private static void check8Neighbors(Point[][] map, int curY, int curX) {
         int cornerMissing = 0, verticalMissing = 0, horizontalMissing = 0;
         Point temp;
-        for(int i=-1; i<=1; i++)
+        for(int i=-1; i<=1; i++) // Goes over all the 9 points in a 3 * 3 square around the current point and checks which points are not walls
             for(int j=-1; j<=1; j++){
                 temp = map[curY + i][curX + j];
                 if(temp.getIsWall() == false){
@@ -105,7 +117,7 @@ public class Floor {
                 }
             }
         
-        if(horizontalMissing >= 1 && verticalMissing >= 1)
+        if(horizontalMissing >= 1 && verticalMissing >= 1) // Checks the number of missing walls to determine the symbol the current wall should be reprented by
             map[curY][curX].setDisplayCharacter(DisplayCharacter.CORNER);
         else if(horizontalMissing >= 1)
             map[curY][curX].setDisplayCharacter(DisplayCharacter.WALL_VERTICAL);
@@ -117,11 +129,17 @@ public class Floor {
             map[curY][curX].setDisplayCharacter(DisplayCharacter.EMPTY);
     }
 
+    /**
+     * Interprets the 5 neighbors surrounding a point on the border of the map so as to determine the character that will represent it on-screen
+     * @param map the map of the current floor, represented as a 2D array of Points
+     * @param curY the Y index of the selected point
+     * @param curX the X index of the selected point
+     */
     private static void check5Neighbors(Point[][] map, int curY, int curX) {
         int cornerMissing = 0, sideMissing = 0;
         Point temp;
 
-        for(int i=-1; i<=1; i++){
+        for(int i=-1; i<=1; i++){ // Goes over all the surrounding points around the current wall. As we are on a border, we have to adapt in which direction they are checked to not raise an error
             if(curY == 0)
                 temp = map[curY + 1][curX + i];
             else if(curY == map.length - 1)
@@ -138,7 +156,7 @@ public class Floor {
         }
 
     
-        if(sideMissing != 0 && (curX == 0 || curX == map.length - 1))
+        if(sideMissing != 0 && (curX == 0 || curX == map.length - 1)) // Checks the number of missing walls to determine the symbol the current wall should be reprented by
             map[curY][curX].setDisplayCharacter(DisplayCharacter.WALL_VERTICAL);
         else if(sideMissing != 0 && (curY == 0 || curY == map.length - 1))
             map[curY][curX].setDisplayCharacter(DisplayCharacter.WALL_HORIZONTAL);
@@ -148,7 +166,13 @@ public class Floor {
             map[curY][curX].setDisplayCharacter(DisplayCharacter.EMPTY);
     }
 
-    private static void check3Neighbors(Point[][] map, int curY, int curX) {
+    /**
+     * Interprets the 3 neighbors surrounding a point on a corner of the map so as to determine the character that will represent it on-screen
+     * @param map the map of the current floor, represented as a 2D array of Points
+     * @param curY the Y index of the selected point
+     * @param curX the X index of the selected point
+     */
+    private static void check3Neighbors(Point[][] map, int curY, int curX) { // As we are on a corner and we have set exterior walls all around the map, we only check the state of the point on the corner of the inside map
         if((curY == 0 && curX == 0 && map[curY + 1][curX + 1].getIsWall() == false) || 
         (curY == 0 && curX == map.length - 1 && map[curY + 1][curX - 1].getIsWall() == false) || 
         (curY == map.length - 1 && curX == 0 && map[curY - 1][curX + 1].getIsWall() == false) || 
@@ -159,6 +183,9 @@ public class Floor {
             map[curY][curX].setDisplayCharacter(DisplayCharacter.EMPTY);
     }
 
+    /**
+     * Function that displays the current floor, by iterating over every point of the map and displaying its associated character
+     */
     public void displayFloor() {
         for(int i=0; i<this.map.length; i++){
             for(int j=0; j<this.map.length; j++)
