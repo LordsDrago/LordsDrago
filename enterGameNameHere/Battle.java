@@ -1,34 +1,61 @@
 package enterGameNameHere;
-
 import java.util.Scanner;
-
 import enterGameNameHere.Races.Entity;
-
+ 
 public class Battle {
-    public void battle(Entity player , Entity ennemy ){
+   /**
+    * Allow 2 entities to fight
+    * @param player
+    * @param ennemy
+    * @param scan
+    */
+    public void battle(Entity player , Entity ennemy , Scanner scan ){
         int a = 0;
-        Scanner scan = new Scanner(System.in);
         while ((player.getHp() > 0) && (ennemy.getHp() > 0)){
-            System.out.println("The actual Player hp is :"+player.getHp()+" | The actual monster hp is : "+ennemy.getHp());
-            System.out.println("Please choose the attack :");
-            a = scan.nextInt();
-            if (a == 1) {
-                player.attack(ennemy, 0, player.getStrength(), 200);
-                ennemy.attack(player, 0, ennemy.getStrength(), 5);
-            }
-            else
-                System.out.println("Na!");
+            System.out.println("You're actually fighting "+ennemy.getSpecieName() +"!");
             
+
         }
-        System.out.println("And the winner is : ");
-        if (player.getHp() > ennemy.getHp()){
-            System.out.println(player.getSpecieName());
-            System.out.println("He left his ennemy with :"+ennemy.getHp());
+    }
+    /**
+     * Allow to see which entity is faster
+     * @param speed1
+     * @param speed2
+     * @return True if the first is faster and false if not
+     */
+    public boolean isFaster(int speed1 , int speed2){
+        if (speed1 > speed2) return true;
+        else return false;
+    }
+
+    /**
+     * Allow to see how much damage the element do to the ennemy
+     * @param elementP
+     * @param elementE
+     * @return 0 , 1 or 2
+     */
+    public static int isElement(String elementP , String elementE){
+        switch(elementP){
+            case "fire":
+                if (elementE == "water" ) return 0;
+                if (elementE == "fire"  ) return 1;
+                if (elementE == "grass" ) return 2;
+            case "water":
+                if (elementE == "grass" ) return 0;
+                if (elementE == "water" ) return 1;
+                if (elementE == "fire"  ) return 2;
+            case "grass":
+                if (elementE == "fire"  ) return 0;
+                if (elementE == "grass" ) return 1;
+                if (elementE == "water" ) return 2;
         }
-        else{
-            System.out.println(ennemy.getSpecieName());
-            System.out.println("He left his ennemy with :"+player.getHp());
-        }
-        scan.close();
+        return -1;
+    }
+    /**
+     * Easier to write than System.out.println, do the same thing but faster
+     * @param string
+     */
+    public void printf(String string){
+        System.out.println(string);
     }
 }
