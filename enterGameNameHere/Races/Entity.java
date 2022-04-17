@@ -57,6 +57,14 @@ public abstract class Entity {
       return this.strength;
   }
 
+  public void setPoint(Point newPosition){
+      this.position = newPosition;
+  }
+
+  public Point getPoint(){
+      return this.position;
+  }
+
   public abstract void moveTo();
   /**
    * Give the pourcentage in function of the number and damage entered
