@@ -1,5 +1,6 @@
 package enterGameNameHere.Terrain;
 
+import enterGameNameHere.Errors;
 import enterGameNameHere.Races.*;
 import java.util.Random;
 
@@ -15,7 +16,8 @@ public class Floor {
      * Floor constructor, creates a 2D array of Points which represents the map
      * @param size the size of the map (always 15, as this constructor is private)
      */
-    private Floor(int size){
+    private Floor(int size, Good player){
+        this.player = player;
         this.map = new Point[size + 2][size + 2];
         initFloor(size + 2);
     }
@@ -23,8 +25,8 @@ public class Floor {
     /**
      * The default floor constructor, builds a 15*15 map as a 2D array of points
      */
-    public Floor(){
-        this(15);
+    public Floor(Good player){
+        this(15, player);
     }
 
     /**
@@ -34,7 +36,7 @@ public class Floor {
     private void initFloor(int size) {
         for(int i=0; i<size; i++)
             for(int j=0; j<size; j++){
-                this.map[i][j] = new Point(i, j); // instanciates points for the whole map
+                this.map[i][j] = new Point(j, i); // instanciates points for the whole map
             }
         this.initExtWalls();
         this.initIntWalls();
@@ -81,6 +83,7 @@ public class Floor {
         Point end = this.mapString.getMapEnd();
         this.map[start.getY()][start.getX()].toggleIsPlayer();
         this.map[end.getY()][end.getX()].toggleIsEnd();
+        this.player.setPoint(map[start.getY()][start.getX()]);
     }
 
     /**
@@ -119,7 +122,7 @@ public class Floor {
         for(int i=-1; i<=1; i++) // Goes over all the 9 points in a 3 * 3 square around the current point and checks which points are not walls
             for(int j=-1; j<=1; j++){
                 temp = map[curY + i][curX + j];
-                if(temp.getIsWall() == false){
+                if(!temp.getIsWall()){
                     if((i+j) % 2 == 0)
                         cornerMissing++;
                     else if(i == 0)
@@ -161,9 +164,9 @@ public class Floor {
             else
                 temp = map[curY + i][curX - 1];
 
-            if(i%2 != 0 && temp.getIsWall() == false)
+            if(i%2 != 0 && !temp.getIsWall())
                 cornerMissing++;
-            else if(i%2 == 0 && temp.getIsWall() == false)
+            else if(i%2 == 0 && !temp.getIsWall())
                 sideMissing++;
         }
 
@@ -185,10 +188,10 @@ public class Floor {
      * @param curX the X index of the selected point
      */
     private static void check3Neighbors(Point[][] map, int curY, int curX) { // As we are on a corner and we have set exterior walls all around the map, we only check the state of the point on the corner of the inside map
-        if((curY == 0 && curX == 0 && map[curY + 1][curX + 1].getIsWall() == false) || 
-        (curY == 0 && curX == map.length - 1 && map[curY + 1][curX - 1].getIsWall() == false) || 
-        (curY == map.length - 1 && curX == 0 && map[curY - 1][curX + 1].getIsWall() == false) || 
-        (curY == map.length - 1 && curX == map.length - 1 && map[curY - 1][curX - 1].getIsWall() == false))
+        if((curY == 0 && curX == 0 && !map[curY + 1][curX + 1].getIsWall()) || 
+        (curY == 0 && curX == map.length - 1 && !map[curY + 1][curX - 1].getIsWall()) || 
+        (curY == map.length - 1 && curX == 0 && !map[curY - 1][curX + 1].getIsWall()) || 
+        (curY == map.length - 1 && curX == map.length - 1 && !map[curY - 1][curX - 1].getIsWall()))
             map[curY][curX].setDisplayCharacter(DisplayCharacter.CORNER);
         
         else
@@ -206,7 +209,41 @@ public class Floor {
         }
     }
 
-    public static void checkPoint(String direction, Good player) {
-        Point curPoint = player.get
+    public static Point transformDirection(String direction) {
+        Point transform = new Point(0, 0);
+
+        switch (direction) {
+            case "up":
+                transform.setY(transform.getY()-1);
+                break;
+            case "down":
+                transform.setY(transform.getY()+1);
+                break;
+            case "right":
+                transform.setX(transform.getX()+1);
+                break;
+            case "left":
+                transform.setX(transform.getX()-1);
+                break;
+        }
+
+        return transform;
+    }
+
+    public void movePlayer(String direction) throws Errors {
+        Point curPoint = player.getPoint();
+        Point change = Floor.transformDirection(direction);
+        int nextY = curPoint.getY() + change.getY(); 
+        int nextX = curPoint.getX() + change.getX();
+
+        if(map[nextY][nextX].getIsMonster() || map[nextY][nextX].getIsWall())
+            throw new Errors("The player cannot move in an incorrect place !");
+
+        this.map[curPoint.getY()][curPoint.getX()].toggleIsPlayer();
+        this.map[curPoint.getY()][curPoint.getX()].setDisplayCharacter(DisplayCharacter.EMPTY);
+
+        player.setPoint(map[nextY][nextX]);
+        map[nextY][nextX].toggleIsPlayer();
+        map[nextY][nextX].setDisplayCharacter(DisplayCharacter.PLAYER);
     }
 }
