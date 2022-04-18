@@ -75,12 +75,11 @@ public class Battle {
     }
 
     public int addDamage(Entity character , int spell){
-        if (character instanceof Elf){
-            int spelldamage = ((Elf)character).spellElf[spell].getAp();
-            int test = character.getStrength();
-            return character.getStrength();
-        }
-        return -1;   
+        int test =  0 ;
+        if (character instanceof Elf)
+            test = character.getStrength();
+        return test;
+         
     }
 
     /**
