@@ -1,13 +1,14 @@
 package enterGameNameHere.Races;
 
 import java.util.Random;
+import java.util.Scanner;
 
 import enterGameNameHere.Physcial_Damage.Physical;
 import enterGameNameHere.Physcial_Damage.Pspell;
 
 public class Human extends Good implements Physical {
     public final Pspell spellHum[] = new Pspell[3];
-    protected String name;
+    
 
     /**
      * Construcor , to create an human
@@ -16,9 +17,25 @@ public class Human extends Good implements Physical {
      * @param strength
      * @param element
      */
-    public Human( String specie , String name , int strength , String element ){
-        super(specie ,strength,element);
-        this.name = name;
+    public Human(Scanner scan){
+        super(scan);
+    }
+
+    @Override
+    public void setStrength(){
+        Random rd = new Random();
+        this.strength = rd.nextInt(15);
+    }
+
+    @Override
+    public void setHp(){
+        Random rd = new Random();
+        this.hp = rd.nextInt(50)+300; 
+    }
+
+    @Override
+    public void setElement(){
+        this.element = "physical";
     }
 
     @Override

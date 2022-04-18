@@ -3,12 +3,17 @@ package enterGameNameHere.Races;
 import java.util.Scanner;
 
 public abstract class Good extends Entity {
-    
-    public Good(String specie , int strength , String element){
-        super(specie , strength , element);
+    protected String name;
+    public Good(Scanner scan){
+        super();
+        setName(scan);
     }
 
     abstract public void spellDisplay();
+
+    public void setName(Scanner scan){
+        this.name = scan.nextLine();
+    }
 
     public void moveTo(){
 

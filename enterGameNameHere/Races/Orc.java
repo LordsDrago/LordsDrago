@@ -6,10 +6,28 @@ import enterGameNameHere.Physcial_Damage.Physical;
 import enterGameNameHere.Physcial_Damage.Pspell;
 
 public class Orc extends Evil implements Physical {
+
     public final Pspell spellOrc[] = new Pspell[3];
-    public Orc(String specie , int strength, String element){
-        super(specie, strength ,element);
+    public Orc(){
+        super();
     }    
+
+    @Override
+    public void setStrength(){
+        Random rd = new Random();
+        this.strength = rd.nextInt(10);
+    }
+
+    @Override
+    public void setHp(){
+        Random rd = new Random();
+        this.hp = rd.nextInt(20)+150; 
+    }
+
+    @Override
+    public void setElement(){
+        this.element = "physical";
+    }
 
     @Override
     public void getPspell(){

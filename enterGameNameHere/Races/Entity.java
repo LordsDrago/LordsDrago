@@ -1,15 +1,17 @@
 package enterGameNameHere.Races;
+import java.util.Random;
 import java.util.Scanner;
 
 import enterGameNameHere.Terrain.*;
 
 
 public abstract class Entity {
-    protected String specie;
+    protected String adjective;
     protected int strength;
     protected int hp;
     protected Point position;
     protected String element; // Ceci est un humain de type FEU allez sur le lien : https://github.com/LordsDrago/Projet-Advanced-Prog
+    private final static Adjective[] adjectiveList = {Adjective.BLOODTHIRSTY, Adjective.BRAVE, Adjective.COURAGEOUS, Adjective.DRUNK, Adjective.FABULOUS, Adjective.FAYAD, Adjective.FLATEARTHER, Adjective.HIDEOUS, Adjective.HORRIBLE, Adjective.INSANE, Adjective.SHAMEFUL, Adjective.TERRIFIC};
 
  /**
   * Allow to get the speed how the chosen spell
@@ -24,33 +26,35 @@ public abstract class Entity {
    */
   abstract public int getSpellDamageAtPosition(int position);
   abstract public String getSpellElementAtPosition(int position);
-  public Entity(String specie , int strength , String element){
-      this.specie = specie;
-      this.strength = strength;
-      this.element = element;
+
+  public Entity(){
+      setAdjective();
+      setHp();
+      setStrength();
+      setElement();
     }
 
 
   public void say(){
-        System.out.println("I am a "+specie+" and I will kill you !");
+        System.out.println("I am a "+this.adjective+" and I will kill you !");
     }
-    public void setSpecieName(String specie){
-      this.specie = specie;
+
+    public void setAdjective(){
+      Random rd = new Random();
+      this.adjective = adjectiveList[rd.nextInt(12)].getAdjective();
   }
   /**
    * Give the current species name
    * @return The current species name
    */
-  public String getSpecieName(){
-      return this.specie;
+  public String getAdjective(){
+      return this.adjective;
   }
   /**
    * Setting the entity HP
    * @param hp
    */
-  public void setHp(int hp){
-      this.hp = hp;
-  }
+  abstract public void setHp();
   /**
    * Give the HP of the entity
    * @return The current HP
@@ -62,9 +66,7 @@ public abstract class Entity {
    * Setting the entity Strength
    * @param strength
    */
-  public void setStrength(int strength){
-      this.strength = strength;
-  }
+  abstract public void setStrength();
   /**
    * Give the strength of the entity
    * @return The current strength
@@ -91,9 +93,7 @@ public abstract class Entity {
    * Setting elements for the current entity
    * @param element
    */
-  public void setElement(String element){
-      this.element = element;
-  }
+  abstract public void setElement();
 
   /**
    * Getting the element of the current entity

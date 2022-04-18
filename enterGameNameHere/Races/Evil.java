@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public abstract class Evil extends Entity {
 
-    public Evil(String specie , int strength , String element){
-      super(specie, strength , element);
+    public Evil(){
+      super();
     }
 
   @Override
