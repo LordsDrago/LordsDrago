@@ -11,12 +11,6 @@ public class Elf extends Good implements Magic {
         super(specie ,strength , element);
         this.name = name;
     }
-
-    @Override
-    public void castSpell(Entity ennemy){
-        
-    }
-
     @Override
     public void getSpell(){
         Random rd = new Random();
@@ -24,11 +18,11 @@ public class Elf extends Good implements Magic {
             spellElf[i] = Magic.spell[rd.nextInt(27)];
         }
     }
-
+    @Override
     public void spellDisplay(){
         System.out.println("Your actual spell are :");
         for (int i = 0 ; i < 3 ; i++){
-            System.out.println(i + " : " + this.spellElf[i]);
+            System.out.println((i+1) + " : " + this.spellElf[i]);
         }
     }
 }

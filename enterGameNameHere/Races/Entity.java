@@ -1,4 +1,6 @@
 package enterGameNameHere.Races;
+import java.util.Scanner;
+
 import enterGameNameHere.Terrain.*;
 
 
@@ -65,17 +67,7 @@ public abstract class Entity {
       return this.position;
   }
 
-  public abstract void moveTo();
-  /**
-   * Give the pourcentage in function of the number and damage entered
-   * @param number
-   * @param damage
-   * @return The pourcatage value
-   */
-  public double pourcentage(int number , int damage){
-      number = ((damage*number)/100);
-      return number;
-  }
+  public abstract int spellChoice(Scanner scan);
     /**
      * Allow to attack another entity
      * @param ennemy

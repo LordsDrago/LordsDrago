@@ -22,26 +22,25 @@ public class Human extends Good implements Physical {
     }
 
     @Override
-    public void castPspell(Entity ennemy){
-
-    }
-
-    @Override
     public void getPspell(){
         Random rd = new Random();
         for (int i = 0 ; i < 3 ; i++){
-            spellHum[i] = Physical.pspell[rd.nextInt(7)];
+            spellHum[i+1] = Physical.pspell[rd.nextInt(7)];
         }
     }
+
 
     /**
      * Display the spell of this human
      */
-    public void PspellDisplay(){
+    @Override
+    public void spellDisplay(){
         System.out.println("Your actual spell are :");
         for (int i = 0 ; i < 3 ; i++){
-            System.out.println(i + " : " + this.spellHum[i]);
+            System.out.println((i+1) + " : " + this.spellHum[i]);
         }
     }
+
+
 
 }
