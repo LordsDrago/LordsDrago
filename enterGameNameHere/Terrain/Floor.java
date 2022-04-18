@@ -246,4 +246,31 @@ public class Floor {
         map[nextY][nextX].toggleIsPlayer();
         map[nextY][nextX].setDisplayCharacter(DisplayCharacter.PLAYER);
     }
+
+    public int getFreePoints() {
+        int counter = 0;
+        for(int i=1; i<=this.map.length - 2; i++)
+            for(int j=1; j<=this.map.length - 2; j++)
+                if(!this.map[j][i].getIsWall() && !this.map[j][i].getIsPlayer() && !this.map[j][i].getIsEnd())
+                    counter++;
+        return counter;
+    }
+
+    public void setMonsters(double ratio) { // ratio --> between 0 and 1
+        Random rd = new Random();
+        double approachedMonsterNumber = this.getFreePoints() * ratio;
+        int monsterNumber = (int) approachedMonsterNumber;
+        this.monsters = new Evil[monsterNumber];
+        for(int i=0; i<monsterNumber; i++)
+            if(rd.nextInt(2) == 1)
+                this.monsters[i] = new Orc("test", 1, "test");
+            else 
+                this.monsters[i] = new Goblin("test", 1, "test");
+    }
+
+    public void placeMonsters() {
+        for(Evil monster: this.monsters){
+            
+        }
+    }
 }
