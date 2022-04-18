@@ -4,11 +4,30 @@ import enterGameNameHere.Magic.Magic;
 import enterGameNameHere.Magic.Spell;
 
 public class Goblin extends Evil implements Magic {
+    public final static String elementList[] = {"fire","water","grass"};
     public final Spell spellGob[] = new Spell[3];
-    public Goblin(String specie , int strength , String element){
-        super(specie , strength , element);
+    public Goblin(){
+        super();
     }
     
+    @Override
+    public void setStrength(){
+        Random rd = new Random();
+        this.strength = rd.nextInt(10);
+    }
+
+    @Override
+    public void setHp(){
+        Random rd = new Random();
+        this.hp = rd.nextInt(20)+150; 
+    }
+
+    @Override
+    public void setElement(){
+        Random rd = new Random();
+        this.element = elementList[rd.nextInt(3)];
+    }
+
     @Override
     public void getSpell(){
         Random rd = new Random();

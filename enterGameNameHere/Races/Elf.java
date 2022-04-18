@@ -1,15 +1,33 @@
 package enterGameNameHere.Races;
 import java.util.Random;
+import java.util.Scanner;
 import enterGameNameHere.Magic.Magic;
 import enterGameNameHere.Magic.Spell;
 
 public class Elf extends Good implements Magic {
-    protected String name;
+    public final static String elementList[] = {"fire","water","grass"};
     public final Spell spellElf[] = new Spell[3];
 
-    public Elf( String specie , String name , int strength , String element ){
-        super(specie ,strength , element);
-        this.name = name;
+    public Elf(Scanner scan){
+        super(scan);
+    }
+
+    @Override
+    public void setStrength(){
+        Random rd = new Random();
+        this.strength = rd.nextInt(15);
+    }
+
+    @Override
+    public void setHp(){
+        Random rd = new Random();
+        this.hp = rd.nextInt(50)+300; 
+    }
+
+    @Override
+    public void setElement(){
+        Random rd = new Random();
+        this.element = elementList[rd.nextInt(3)];
     }
 
     @Override
