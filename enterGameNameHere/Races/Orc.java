@@ -12,11 +12,6 @@ public class Orc extends Evil implements Physical {
     }    
 
     @Override
-    public void castPspell(Entity ennemy){
-
-    }
-
-    @Override
     public void getPspell(){
         Random rd = new Random();
         for (int i = 0 ; i < 3 ; i++)

@@ -10,15 +10,10 @@ public class Goblin extends Evil implements Magic {
     }
     
     @Override
-    public void castSpell(Entity ennemy){
-        
-    }
-    
-    @Override
     public void getSpell(){
         Random rd = new Random();
         for (int i = 0 ; i < 3 ; i++){
-            spellgob[i] = Magic.spell[rd.nextInt(27)];
+            spellGob[i] = Magic.spell[rd.nextInt(27)];
         }
     }
 }
