@@ -9,7 +9,7 @@ public class Battle {
     * @param ennemy
     * @param scan
     */
-    public void battle(Entity player , Entity ennemy , Scanner scan ){
+    public void battle(Good player , Evil ennemy , Scanner scan ){
         int pspell = 0 , espell = 0 , faster = 0;
         System.out.println("You are actually fighting a "+ennemy.getSpecieName()+" !");
         while ((player.getHp() > 0) && (ennemy.getHp() > 0)){
