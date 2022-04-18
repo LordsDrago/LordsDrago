@@ -1,6 +1,9 @@
 package enterGameNameHere;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.zip.CheckedInputStream;
+
+import enterGameNameHere.Physcial_Damage.Physical;
 import enterGameNameHere.Races.*;
  
 public class Battle {
@@ -11,34 +14,22 @@ public class Battle {
     * @param scan
     */ 
     public Battle(Good player , Evil ennemy , Scanner sc ){
-        Random rd = new Random();
-        int pspell = 0 , espell = 0 , faster = 0;
+        int pSpell = 0 , eSpell = 0 ;
+        boolean faster;
         System.out.println("You are actually fighting a "+ennemy.getSpecieName()+" !");
-        while ((player.getHp() > 0) && (ennemy.getHp() > 0)){
-            espell = rd.nextInt(3);
+        while (!this.checkEnd(player.getHp(), ennemy.getHp())){
+            eSpell = ennemy.spellChoice(sc);
             System.out.println("You still have : " + player.getHp() + " HP | Your ennemy has still : " + ennemy.getHp() +" HP");
-            pspell = player.spellChoice(sc);
-            if (player instanceof Human)
-                faster = whoPfaster((Entity)player, (Entity)ennemy, pspell, espell);
-            else
-                faster = whoMfaster((Entity)player, (Entity)ennemy, pspell, espell);
-
-            if (faster == 1){
-                player.attack(ennemy , addDamage((Entity)player, pspell));
-                ennemy.attack(player, addDamage((Entity)ennemy, espell));
-            }
-            else{
-                ennemy.attack(player, addDamage((Entity)ennemy, espell));
-                player.attack(ennemy ,addDamage((Entity)player, pspell));
-            }
-            
+            pSpell = player.spellChoice(sc);
+            faster = isPlayerFaster(player, ennemy, pSpell, eSpell);
+            try {
+                round(player, ennemy, pSpell, eSpell, faster , isElement(player.getSpellElementAtPosition(pSpell), ennemy.getElement()) , isElement(ennemy.getSpellElementAtPosition(eSpell), player.getElement()));
+            } catch (Errors e) {
+                //TODO: handle exception
+            } ;
         }
-        if (player.getHp() > ennemy.getHp())
-            printf("You won ! ");
-        else
-            printf("Too bad ! You lost !");
+        this.battleEnd(player.getHp(), ennemy.getHp());
     }
-
     /**
      * Allow to see how much damage the element do to the ennemy
      * @param elementP
@@ -46,72 +37,59 @@ public class Battle {
      * @return 0 , 1 or 2
      */
     public static int isElement(String elementP , String elementE){
+        if (elementP.equals(elementE) || elementP.equals("physical") || elementE.equals("physical")) 
+            return 1;
         switch(elementP){
             case "fire":
-                if (elementE == "water" ) return 0;
-                if (elementE == "fire" || elementE == "physical"  ) return 1;
-                if (elementE == "grass" ) return 2;
+                if (elementE.equals("water")) return 0;
+                if (elementE.equals("grass")) return 2;
             case "water":
                 if (elementE == "grass" ) return 0;
-                if (elementE == "water" || elementE == "physical" ) return 1;
                 if (elementE == "fire"  ) return 2;
             case "grass":
                 if (elementE == "fire"  ) return 0;
-                if (elementE == "grass" || elementE == "physical" ) return 1;
                 if (elementE == "water" ) return 2;
         }
         return -1;
     }
 
-    /**
-     * Allow to see which entity's spell is faster
-     * @param player
-     * @param ennemy
-     * @param pspell
-     * @param espell
-     * @return "1" if the player is faster and "2" if the monster is faster
-     */
-    public int whoPfaster(Entity player , Entity ennemy , int pspell , int espell ){
-        if (ennemy instanceof Orc){
-            if ( ((Human)player).spellHum[pspell].getSpeed() > ((Orc)ennemy).spellOrc[espell].getSpeed() ) 
-                return 1;
-            else 
-                return 2;
-        }
-        else{
-            if ( ((Human)player).spellHum[pspell].getSpeed() > ((Goblin)ennemy).spellGob[espell].getSpeed() )
-                return 1;
-            else
-                return 2;
-        }
+    public boolean checkEnd(int playerHp , int ennemyHp){
+        return playerHp <= 0 || ennemyHp <= 0 ;
     }
 
-    public int whoMfaster(Entity player , Entity ennemy , int pspell , int espell){
-        if (ennemy instanceof Orc){
-            if (((Elf)player).spellElf[pspell].getSpeed() > ((Orc)ennemy).spellOrc[espell].getSpeed() ) 
-                return 1;
-            else 
-                return 2;
+    public void battleEnd(int playerHp , int ennemyHp){
+        if (playerHp > ennemyHp) System.out.println("You won");
+        else System.out.println("You lost");
+    }
+
+    public void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster , int pDamage , int eDamage) throws Errors{
+        if (faster){
+            player.attack(ennemy , addDamage((Entity)player, pSpell) * pDamage);
+            System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
+            if (this.checkEnd(player.getHp(), ennemy.getHp()))
+                throw new Errors("Battle ended");
+            ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
+            System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
         }
         else{
-            if ( ((Elf)player).spellElf[pspell].getSpeed() > ((Elf)ennemy).spellElf[espell].getSpeed() )
-                return 1;
-            else
-                return 2;
+            ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
+            System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
+            if (this.checkEnd(player.getHp(), ennemy.getHp()))
+                throw new Errors("Battle ended");
+            player.attack(ennemy ,addDamage((Entity)player, pSpell) * pDamage);
+            System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
         }
-    }   
+    }
+    public boolean isPlayerFaster(Good player , Evil ennemy , int pSpell , int eSpell) {
+        int pSpeed = player.getSpellSpeedAtPosition(pSpell);
+        int eSpeed = ennemy.getSpellSpeedAtPosition(eSpell);
+        
+        if (pSpeed > eSpeed) return true;
+        else return false;
+    }
 
     public int addDamage(Entity character , int spell){
-        int damage =  0 ;
-        if (character instanceof Elf)
-            damage = character.getStrength() + ((Elf)character).spellElf[spell].getAp();
-        else if (character instanceof Goblin)
-            damage = character.getStrength() + ((Goblin)character).spellGob[spell].getAp();
-        else if (character instanceof Human)
-            damage = character.getStrength() + ((Human)character).spellHum[spell].getAp();
-        else if (character instanceof Orc)
-            damage = character.getStrength() + ((Orc)character).spellOrc[spell].getAp();
-        return damage;    
+          return character.getSpellDamageAtPosition(spell);
     }
 
     /**
