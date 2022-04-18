@@ -209,7 +209,11 @@ public class Floor {
         }
     }
 
-    public static Point transformDirection(String direction) {
+    public Evil[] getMonsters() {
+        return this.monsters;
+    }
+
+    private static Point transformDirection(String direction) {
         Point transform = new Point(0, 0);
 
         switch (direction) {
@@ -247,7 +251,7 @@ public class Floor {
         map[nextY][nextX].setDisplayCharacter(DisplayCharacter.PLAYER);
     }
 
-    public int getFreePoints() {
+    private int getFreePoints() {
         int counter = 0;
         for(int i=1; i<=this.map.length - 2; i++)
             for(int j=1; j<=this.map.length - 2; j++)
@@ -269,8 +273,22 @@ public class Floor {
     }
 
     public void placeMonsters() {
+        Random rd = new Random();
+        Point temp;
         for(Evil monster: this.monsters){
-            
+            do {
+                temp = this.map[rd.nextInt(15)+1][rd.nextInt(15)+1];
+            } while (temp.getIsPlayer() || temp.getIsWall() || temp.getIsMonster() || temp.getIsEnd());
+            this.map[temp.getY()][temp.getX()].toggleIsMonster();
+            monster.setPoint(temp);
         }
+    }
+
+    public boolean checkIsMonster() {
+        return this.map[this.player.getPoint().getY()][this.player.getPoint().getX()].getIsMonster();
+    }
+
+    public boolean checkIsEnd() {
+        return this.map[this.player.getPoint().getY()][this.player.getPoint().getX()].getIsEnd();
     }
 }

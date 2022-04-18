@@ -1,5 +1,7 @@
 package enterGameNameHere;
 
+import java.util.Scanner;
+
 import enterGameNameHere.Races.*;
 import enterGameNameHere.Terrain.Floor;
 
@@ -38,5 +40,20 @@ public class Game {
             System.out.println(e.getMessage());
         }
             
+    }
+
+    public void checkAdvanceFloor() {
+        if(this.curFloor.checkIsEnd())
+            this.advanceFloor();
+    }
+
+    public void checkBattle(Scanner scan) {
+        if(this.curFloor.checkIsMonster()){
+            Evil curMonster;
+            for(Evil monster: this.curFloor.getMonsters())
+                if(monster.getPoint().getY() == this.player.getPoint().getY() && monster.getPoint().getX() == this.player.getPoint().getX())
+                    curMonster = monster;
+            new Battle(this.player, curMonster, scan);
+        }
     }
 }
