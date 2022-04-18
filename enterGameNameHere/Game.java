@@ -51,9 +51,10 @@ public class Game {
         if(this.curFloor.checkIsMonster()){
             Evil curMonster;
             for(Evil monster: this.curFloor.getMonsters())
-                if(monster.getPoint().getY() == this.player.getPoint().getY() && monster.getPoint().getX() == this.player.getPoint().getX())
+                if(monster.getPoint().getY() == this.player.getPoint().getY() && monster.getPoint().getX() == this.player.getPoint().getX()){
                     curMonster = monster;
-            new Battle(this.player, curMonster, scan);
-        }
+                    new Battle(this.player, curMonster, scan);
+                }
+        }       
     }
 }
