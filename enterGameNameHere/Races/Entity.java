@@ -76,14 +76,12 @@ public abstract class Entity {
       number = ((damage*number)/100);
       return number;
   }
-  /**
-   * Allow to attack an another entity
-   * @param ennemy
-   * @param speed
-   * @param strength
-   * @param damage
-   */
-  public void attack(Entity ennemy , int speed, int strength , int damage){
+    /**
+     * Allow to attack another entity
+     * @param ennemy
+     * @param damage
+     */
+  public void attack(Entity ennemy , int damage){
       ennemy.hp -= damage;  
   }
 
