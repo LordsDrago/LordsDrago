@@ -10,11 +10,11 @@ public class Main {
         
         Elf elf1 = new Elf("elf", "olivier", 20, "fire");
         elf1.setHp(200);
-        Orc orc = new Orc("Orc", 20, "Fire");
-        orc.setHp(200);
-        orc.getPspell();
+        Goblin goblin = new Goblin("goblin", 20, "fire");
+        goblin.setHp(200);
+        goblin.getSpell();
         elf1.getSpell();
-        Battle battle = new Battle(elf1, orc, sc);
+        Battle battle = new Battle(elf1, goblin, sc);
         
     }
 }

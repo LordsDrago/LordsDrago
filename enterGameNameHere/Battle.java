@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.zip.CheckedInputStream;
 
+import enterGameNameHere.Physcial_Damage.Physical;
 import enterGameNameHere.Races.*;
  
 public class Battle {
@@ -17,12 +18,12 @@ public class Battle {
         boolean faster;
         System.out.println("You are actually fighting a "+ennemy.getSpecieName()+" !");
         while (!this.checkEnd(player.getHp(), ennemy.getHp())){
-            ennemy.spellChoice(sc);
+            eSpell = ennemy.spellChoice(sc);
             System.out.println("You still have : " + player.getHp() + " HP | Your ennemy has still : " + ennemy.getHp() +" HP");
             pSpell = player.spellChoice(sc);
             faster = isPlayerFaster(player, ennemy, pSpell, eSpell);
             try {
-                round(player, ennemy, pSpell, eSpell, faster);
+                round(player, ennemy, pSpell, eSpell, faster , isElement(player.getSpellElementAtPosition(pSpell), ennemy.getElement()) , isElement(ennemy.getSpellElementAtPosition(eSpell), player.getElement()));
             } catch (Errors e) {
                 //TODO: handle exception
             } ;
@@ -36,18 +37,17 @@ public class Battle {
      * @return 0 , 1 or 2
      */
     public static int isElement(String elementP , String elementE){
+        if (elementP.equals(elementE) || elementP.equals("physical") || elementE.equals("physical")) 
+            return 1;
         switch(elementP){
             case "fire":
-                if (elementE == "water" ) return 0;
-                if (elementE == "fire" || elementE == "physical"  ) return 1;
-                if (elementE == "grass" ) return 2;
+                if (elementE.equals("water")) return 0;
+                if (elementE.equals("grass")) return 2;
             case "water":
                 if (elementE == "grass" ) return 0;
-                if (elementE == "water" || elementE == "physical" ) return 1;
                 if (elementE == "fire"  ) return 2;
             case "grass":
                 if (elementE == "fire"  ) return 0;
-                if (elementE == "grass" || elementE == "physical" ) return 1;
                 if (elementE == "water" ) return 2;
         }
         return -1;
@@ -62,22 +62,22 @@ public class Battle {
         else System.out.println("You lost");
     }
 
-    public void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster) throws Errors{
+    public void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster , int pDamage , int eDamage) throws Errors{
         if (faster){
-            player.attack(ennemy , addDamage((Entity)player, pSpell));
-            System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell));
+            player.attack(ennemy , addDamage((Entity)player, pSpell) * pDamage);
+            System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
             if (this.checkEnd(player.getHp(), ennemy.getHp()))
                 throw new Errors("Battle ended");
-            ennemy.attack(player, addDamage((Entity)ennemy, eSpell));
-            System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell));
+            ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
+            System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
         }
         else{
-            ennemy.attack(player, addDamage((Entity)ennemy, eSpell));
-            System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell));
+            ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
+            System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
             if (this.checkEnd(player.getHp(), ennemy.getHp()))
                 throw new Errors("Battle ended");
-            player.attack(ennemy ,addDamage((Entity)player, pSpell));
-            System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell));
+            player.attack(ennemy ,addDamage((Entity)player, pSpell) * pDamage);
+            System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
         }
     }
     public boolean isPlayerFaster(Good player , Evil ennemy , int pSpell , int eSpell) {
@@ -89,7 +89,7 @@ public class Battle {
     }
 
     public int addDamage(Entity character , int spell){
-          return character.getDamageAtPosition(spell);
+          return character.getSpellDamageAtPosition(spell);
     }
 
     /**

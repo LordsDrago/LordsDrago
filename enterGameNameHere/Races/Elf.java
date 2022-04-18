@@ -13,7 +13,7 @@ public class Elf extends Good implements Magic {
     }
 
     @Override
-    public int getDamageAtPosition(int position){
+    public int getSpellDamageAtPosition(int position){
         return this.spellElf[position].getAp() + getStrength();
     }
 
@@ -35,5 +35,10 @@ public class Elf extends Good implements Magic {
         for (int i = 0 ; i < 3 ; i++){
             System.out.println((i+1) + " : " + this.spellElf[i]);
         }
+    }
+
+    @Override
+    public String getSpellElementAtPosition(int position){
+        return this.spellElf[position].getElement();
     }
 }

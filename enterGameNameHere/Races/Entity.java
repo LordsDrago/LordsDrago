@@ -11,13 +11,25 @@ public abstract class Entity {
     protected Point position;
     protected String element; // Ceci est un humain de type FEU allez sur le lien : https://github.com/LordsDrago/Projet-Advanced-Prog
 
+ /**
+  * Allow to get the speed how the chosen spell
+  * @param position
+  * @return The speed of the spell
+  */
   abstract public int getSpellSpeedAtPosition(int position);
-  abstract public int getDamageAtPosition(int position);
+  /**
+   * Allow to see the total damage given to the ennemy
+   * @param position
+   * @return The total damage with the entity stat
+   */
+  abstract public int getSpellDamageAtPosition(int position);
+  abstract public String getSpellElementAtPosition(int position);
   public Entity(String specie , int strength , String element){
       this.specie = specie;
       this.strength = strength;
       this.element = element;
     }
+
 
   public void say(){
         System.out.println("I am a "+specie+" and I will kill you !");
@@ -60,14 +72,37 @@ public abstract class Entity {
   public int getStrength(){
       return this.strength;
   }
-
+  /**
+   * Setting a position
+   * @param newPosition
+   */
   public void setPoint(Point newPosition){
       this.position = newPosition;
   }
-
+  /**
+   * Getting the position of the new
+   * @return
+   */
   public Point getPoint(){
       return this.position;
   }
+
+  /**
+   * Setting elements for the current entity
+   * @param element
+   */
+  public void setElement(String element){
+      this.element = element;
+  }
+
+  /**
+   * Getting the element of the current entity
+   * @return The element of the character
+   */
+  public String getElement(){
+      return this.element;
+  }
+
   /**
    * Allow to choose the spell
    * @param scan

@@ -27,7 +27,7 @@ public class Human extends Good implements Physical {
     }
 
     @Override
-    public int getDamageAtPosition(int position){
+    public int getSpellDamageAtPosition(int position){
         return this.spellHum[position].getAp() + getStrength();
     }
 
@@ -37,6 +37,11 @@ public class Human extends Good implements Physical {
         for (int i = 0 ; i < 3 ; i++){
             spellHum[i+1] = Physical.pspell[rd.nextInt(7)];
         }
+    }
+
+    @Override
+    public String getSpellElementAtPosition(int position){
+        return this.spellHum[position].getElement();
     }
 
 

@@ -17,13 +17,19 @@ public class Goblin extends Evil implements Magic {
         }
     }
 
+    
     @Override
-    public int getDamageAtPosition(int position){
+    public int getSpellDamageAtPosition(int position){
         return this.spellGob[position].getAp() + getStrength();
     }
 
     @Override
     public int getSpellSpeedAtPosition(int position){
         return this.spellGob[position].getSpeed();
+    }
+
+    @Override
+    public String getSpellElementAtPosition(int position){
+        return this.spellGob[position].getElement();
     }
 }
