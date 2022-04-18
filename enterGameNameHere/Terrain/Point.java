@@ -71,28 +71,28 @@ public class Point{
      * Changes the wall property of the point
      */
     public void toggleIsWall() {
-        this.isWall = this.isWall == false;
+        this.isWall = !this.isWall;
     }
 
     /**
      * Changes the player property of the point
      */
     public void toggleIsPlayer() {
-        this.isPlayer = this.isPlayer == false;
+        this.isPlayer = !this.isPlayer;
     }
 
     /**
      * Changes the monster property of the point
      */
     public void toggleIsMonster() {
-        this.isMonster = this.isMonster == false;
+        this.isMonster = !this.isMonster;
     }
 
     /**
      * Changes the end property of the point
      */
     public void toggleIsEnd() {
-        this.isEnd = this.isEnd == false;
+        this.isEnd = !this.isEnd;
     }
 
     /**
