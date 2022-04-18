@@ -17,7 +17,7 @@ public class Battle {
                 ((Human)player).PspellDisplay();
                 faster = whoPfaster(player, ennemy, pspell, espell);
                 if (faster == 1){
-                    player.attack(ennemy , 20);
+                    player.attack(ennemy , addDamage((Entity)player, pspell));
                 }
             }
             else{
@@ -75,11 +75,16 @@ public class Battle {
     }
 
     public int addDamage(Entity character , int spell){
-        int test =  0 ;
+        int damage =  0 ;
         if (character instanceof Elf)
-            test = character.getStrength();
-        return test;
-         
+            damage = character.getStrength() + ((Elf)character).spellElf[spell].getAp();
+        else if (character instanceof Goblin)
+            damage = character.getStrength() + ((Goblin)character).spellGob[spell].getAp();
+        else if (character instanceof Human)
+            damage = character.getStrength() + ((Human)character).spellHum[spell].getAp();
+        else if (character instanceof Orc)
+            damage = character.getStrength() + ((Orc)character).spellOrc[spell].getAp();
+        return damage;    
     }
 
     /**

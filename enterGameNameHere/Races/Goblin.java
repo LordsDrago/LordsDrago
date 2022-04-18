@@ -4,7 +4,7 @@ import enterGameNameHere.Magic.Magic;
 import enterGameNameHere.Magic.Spell;
 
 public class Goblin extends Evil implements Magic {
-    protected Spell spellgob[] = new Spell[3];
+    public final Spell spellGob[] = new Spell[3];
     public Goblin(String specie , int strength , String element){
         super(specie , strength , element);
     }
