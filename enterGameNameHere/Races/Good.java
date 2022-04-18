@@ -13,7 +13,7 @@ public abstract class Good extends Entity {
     public void moveTo(){
 
     }
-
+    
     @Override
     public int spellChoice(Scanner scan){
         this.spellDisplay();

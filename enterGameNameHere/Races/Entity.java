@@ -7,10 +7,12 @@ import enterGameNameHere.Terrain.*;
 public abstract class Entity {
     protected String specie;
     protected int strength;
-    protected double hp;
+    protected int hp;
     protected Point position;
     protected String element; // Ceci est un humain de type FEU allez sur le lien : https://github.com/LordsDrago/Projet-Advanced-Prog
 
+  abstract public int getSpellSpeedAtPosition(int position);
+  abstract public int getDamageAtPosition(int position);
   public Entity(String specie , int strength , String element){
       this.specie = specie;
       this.strength = strength;
@@ -41,7 +43,7 @@ public abstract class Entity {
    * Give the HP of the entity
    * @return The current HP
    */
-  public double getHp(){
+  public int getHp(){
       return this.hp;
   }
   /**
@@ -66,7 +68,11 @@ public abstract class Entity {
   public Point getPoint(){
       return this.position;
   }
-
+  /**
+   * Allow to choose the spell
+   * @param scan
+   * @return The index of the chosen spell
+   */
   public abstract int spellChoice(Scanner scan);
     /**
      * Allow to attack another entity

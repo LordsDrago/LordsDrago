@@ -22,6 +22,16 @@ public class Human extends Good implements Physical {
     }
 
     @Override
+    public int getSpellSpeedAtPosition(int position){
+        return this.spellHum[position].getSpeed();
+    }
+
+    @Override
+    public int getDamageAtPosition(int position){
+        return this.spellHum[position].getAp() + getStrength();
+    }
+
+    @Override
     public void getPspell(){
         Random rd = new Random();
         for (int i = 0 ; i < 3 ; i++){
