@@ -8,13 +8,14 @@ import enterGameNameHere.Terrain.Floor;
 public class Game {
     protected Floor curFloor;
     protected int floorsLeft = 3;
-    protected Good player = new Human("Pute", "Allan", 0, "Sexe");
+    protected Good player;
 
     /**
      * Base constructor for a game
      */
-    public Game(){
+    public Game(Scanner scan){
         this.curFloor = new Floor(player);
+        this.player = new Human(scan);
     }
 
     /**
