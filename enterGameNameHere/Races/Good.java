@@ -12,6 +12,8 @@ public abstract class Good extends Entity {
     abstract public void spellDisplay();
 
     public void setName(Scanner scan){
+        System.out.println("Please enter your name");
+        System.out.print(">>>");
         this.name = scan.nextLine();
     }
 

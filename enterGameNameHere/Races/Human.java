@@ -19,6 +19,7 @@ public class Human extends Good implements Physical {
      */
     public Human(Scanner scan){
         super(scan);
+        this.getPspell();
     }
 
     @Override
@@ -30,7 +31,8 @@ public class Human extends Good implements Physical {
     @Override
     public void setHp(){
         Random rd = new Random();
-        this.hp = rd.nextInt(50)+300; 
+        this.maxHp = rd.nextInt(50)+500; 
+        this.curHp = this.maxHp;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class Human extends Good implements Physical {
     public void getPspell(){
         Random rd = new Random();
         for (int i = 0 ; i < 3 ; i++){
-            spellHum[i+1] = Physical.pspell[rd.nextInt(7)];
+            spellHum[i] = Physical.pspell[rd.nextInt(7)];
         }
     }
 

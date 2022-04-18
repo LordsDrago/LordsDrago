@@ -10,6 +10,7 @@ public class Elf extends Good implements Magic {
 
     public Elf(Scanner scan){
         super(scan);
+        this.getSpell();
     }
 
     @Override
@@ -21,7 +22,8 @@ public class Elf extends Good implements Magic {
     @Override
     public void setHp(){
         Random rd = new Random();
-        this.hp = rd.nextInt(50)+300; 
+        this.maxHp = rd.nextInt(50)+500; 
+        this.curHp = this.maxHp;
     }
 
     @Override

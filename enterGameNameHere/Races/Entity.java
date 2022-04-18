@@ -8,7 +8,8 @@ import enterGameNameHere.Terrain.*;
 public abstract class Entity {
     protected String adjective;
     protected int strength;
-    protected int hp;
+    protected int maxHp;
+    protected int curHp;
     protected Point position;
     protected String element; // Ceci est un humain de type FEU allez sur le lien : https://github.com/LordsDrago/Projet-Advanced-Prog
     private final static Adjective[] adjectiveList = {Adjective.BLOODTHIRSTY, Adjective.BRAVE, Adjective.COURAGEOUS, Adjective.DRUNK, Adjective.FABULOUS, Adjective.FAYAD, Adjective.FLATEARTHER, Adjective.HIDEOUS, Adjective.HORRIBLE, Adjective.INSANE, Adjective.SHAMEFUL, Adjective.TERRIFIC};
@@ -60,7 +61,12 @@ public abstract class Entity {
    * @return The current HP
    */
   public int getHp(){
-      return this.hp;
+      return this.curHp;
+  }
+
+  public void putMaxHp() {
+      System.out.println("You have been healed and gained back all of your HP !");
+      this.curHp = this.maxHp;
   }
   /**
    * Setting the entity Strength
@@ -115,7 +121,7 @@ public abstract class Entity {
      * @param damage
      */
   public void attack(Entity ennemy , int damage){
-      ennemy.hp -= damage;  
+      ennemy.curHp -= damage;  
   }
 
 }

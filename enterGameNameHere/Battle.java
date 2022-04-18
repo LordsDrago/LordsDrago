@@ -13,7 +13,7 @@ public class Battle {
     * @param ennemy
     * @param scan
     */ 
-    public Battle(Good player , Evil ennemy , Scanner sc ){
+    public Battle(Good player , Evil ennemy , Scanner sc ) throws Errors{
         int pSpell = 0 , eSpell = 0 ;
         boolean faster;
         System.out.println("You are actually fighting a "+ennemy.getAdjective()+" !");
@@ -24,11 +24,11 @@ public class Battle {
             faster = isPlayerFaster(player, ennemy, pSpell, eSpell);
             try {
                 round(player, ennemy, pSpell, eSpell, faster , isElement(player.getSpellElementAtPosition(pSpell), ennemy.getElement()) , isElement(ennemy.getSpellElementAtPosition(eSpell), player.getElement()));
-            } catch (Errors e) {
-                //TODO: handle exception
-            } ;
+            } catch (Errors e) {} ;
         }
         this.battleEnd(player.getHp(), ennemy.getHp());
+        if(player.getHp() <= 0)
+            throw new Errors("Game finished !");
     }
     /**
      * Allow to see how much damage the element do to the ennemy
@@ -67,7 +67,7 @@ public class Battle {
             player.attack(ennemy , addDamage((Entity)player, pSpell) * pDamage);
             System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
             if (this.checkEnd(player.getHp(), ennemy.getHp()))
-                throw new Errors("Battle ended");
+                throw new Errors("Battle ended !");
             ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
             System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
         }
@@ -75,7 +75,7 @@ public class Battle {
             ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
             System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
             if (this.checkEnd(player.getHp(), ennemy.getHp()))
-                throw new Errors("Battle ended");
+                throw new Errors("Battle ended !");
             player.attack(ennemy ,addDamage((Entity)player, pSpell) * pDamage);
             System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
         }

@@ -10,6 +10,7 @@ public class Orc extends Evil implements Physical {
     public final Pspell spellOrc[] = new Pspell[3];
     public Orc(){
         super();
+        this.getPspell();
     }    
 
     @Override
@@ -21,7 +22,8 @@ public class Orc extends Evil implements Physical {
     @Override
     public void setHp(){
         Random rd = new Random();
-        this.hp = rd.nextInt(20)+150; 
+        this.maxHp = rd.nextInt(20)+150; 
+        this.curHp = this.maxHp;
     }
 
     @Override

@@ -14,8 +14,11 @@ public class Game {
      * Base constructor for a game
      */
     public Game(Scanner scan){
+        if(userInterface.chooseRace(scan).equals("human"))
+            this.player = new Human(scan);
+        else
+            this.player = new Elf(scan);
         this.curFloor = new Floor(player);
-        this.player = new Human(scan);
     }
 
     /**
@@ -30,8 +33,14 @@ public class Game {
      */
     public void advanceFloor() {
         this.floorsLeft--;
-        if(this.floorsLeft > 0)
+        if(this.floorsLeft > 0){
+            this.player.putMaxHp();
             this.curFloor = new Floor(player);
+        }
+    }
+
+    private int getFloorsLeft(){
+        return this.floorsLeft;
     }
 
     public void movePlayer(String direction) {
@@ -48,14 +57,33 @@ public class Game {
             this.advanceFloor();
     }
 
-    public void checkBattle(Scanner scan) {
+    public void checkBattle(Scanner scan) throws Errors {
         if(this.curFloor.checkIsMonster()){
             Evil curMonster;
             for(Evil monster: this.curFloor.getMonsters())
                 if(monster.getPoint().getY() == this.player.getPoint().getY() && monster.getPoint().getX() == this.player.getPoint().getX()){
                     curMonster = monster;
-                    new Battle(this.player, curMonster, scan);
+                    try {
+                        new Battle(this.player, curMonster, scan);
+                    } catch (Errors e) {
+                        System.out.println(e.getMessage());
+                        throw new Errors("gameEnd");
+                    }
+                    
                 }
         }       
+    }
+
+    public void gameHandling(Scanner scan) {
+        while(this.getFloorsLeft() != 0){
+            this.displayCurrentFloor();
+            movePlayer(userInterface.selectMove(scan));
+            try {
+                this.checkBattle(scan);
+            } catch (Exception e) {
+                break;
+            }
+            this.checkAdvanceFloor();
+        }
     }
 }

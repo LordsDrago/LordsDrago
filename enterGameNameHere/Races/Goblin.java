@@ -8,6 +8,7 @@ public class Goblin extends Evil implements Magic {
     public final Spell spellGob[] = new Spell[3];
     public Goblin(){
         super();
+        this.getSpell();
     }
     
     @Override
@@ -19,7 +20,8 @@ public class Goblin extends Evil implements Magic {
     @Override
     public void setHp(){
         Random rd = new Random();
-        this.hp = rd.nextInt(20)+150; 
+        this.maxHp = rd.nextInt(20)+150; 
+        this.curHp = this.maxHp;
     }
 
     @Override

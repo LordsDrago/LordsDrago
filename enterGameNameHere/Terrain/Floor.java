@@ -42,6 +42,8 @@ public class Floor {
         this.initIntWalls();
         this.initStartEnd();
         this.setDisplayCharacters();
+        this.setMonsters(0.1);
+        this.placeMonsters();
     }
 
     /**
@@ -240,7 +242,7 @@ public class Floor {
         int nextY = curPoint.getY() + change.getY(); 
         int nextX = curPoint.getX() + change.getX();
 
-        if(map[nextY][nextX].getIsMonster() || map[nextY][nextX].getIsWall())
+        if(map[nextY][nextX].getIsWall())
             throw new Errors("The player cannot move in an incorrect place !");
 
         this.map[curPoint.getY()][curPoint.getX()].toggleIsPlayer();
