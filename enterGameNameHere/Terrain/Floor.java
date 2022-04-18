@@ -267,9 +267,9 @@ public class Floor {
         this.monsters = new Evil[monsterNumber];
         for(int i=0; i<monsterNumber; i++)
             if(rd.nextInt(2) == 1)
-                this.monsters[i] = new Orc("test", 1, "test");
+                this.monsters[i] = new Orc();
             else 
-                this.monsters[i] = new Goblin("test", 1, "test");
+                this.monsters[i] = new Goblin();
     }
 
     public void placeMonsters() {
