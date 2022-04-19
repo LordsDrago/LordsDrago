@@ -28,6 +28,10 @@ public abstract class Good extends Entity {
         System.out.print(">>>");
         this.name = scan.nextLine();
     }
+
+    public String getName(){
+        return this.name;
+    }
     
     @Override
     public int spellChoice(Scanner scan){
