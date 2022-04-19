@@ -12,10 +12,10 @@ public class Battle {
     public Battle(Good player , Evil ennemy , Scanner sc ) throws Errors{
         int pSpell = 0 , eSpell = 0 ;
         boolean faster;
-        System.out.println("You are currently fighting a "+ennemy.getAdjective()+" "+ennemy.getClass().getSimpleName().toLowerCase()+" !");
+        System.out.println("You are currently fighting a "+ennemy.getAdjective()+" "+ennemy.getClass().getSimpleName().toLowerCase()+" !"+"\n");
         while (!this.checkEnd(player.getHp(), ennemy.getHp())){
             eSpell = ennemy.spellChoice(sc);
-            System.out.println("You still have : " + player.getHp() + " HP | Your ennemy has still : " + ennemy.getHp() +" HP");
+            System.out.println("You still have : " + player.getHp() + " HP | Your ennemy has still : " + ennemy.getHp() +" HP\n");
             pSpell = player.spellChoice(sc);
             sc.nextLine();
             faster = isPlayerFaster(player, ennemy, pSpell, eSpell);
