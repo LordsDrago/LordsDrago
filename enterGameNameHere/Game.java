@@ -107,8 +107,15 @@ public class Game {
         }
     }
 
+    /**
+     * Prints the info of the given game
+     */
+    public void printGameInfo() {
+        System.out.println(this.toString());
+    }
+
     @Override
     public String toString() {
-        return "Floors left : " + this.floorsLeft + " / Race : " + this.player.getClass().getSimpleName() + " / Name : " + this.player.getName() + " / HP : " + this.player.getHp();
+        return "Floors left : " + this.floorsLeft + " / Race : " + this.player.getClass().getSimpleName() + " / Name : " + this.player.getName() + " / HP : " + this.player.getHp() + " / Element : " + this.player.getElement();
     }
 }
