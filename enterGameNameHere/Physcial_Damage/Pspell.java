@@ -1,9 +1,9 @@
 package enterGameNameHere.Physcial_Damage;
 
 public enum Pspell {
-    phys_1("Slam",30,100,"physical"),phys_2("Swift Strike",35,85,"physical"),phys_3("Slash",40,70,"physical"),
-    phys_4("Slant",55,65,"physical"),phys_5("Slashing ray",65,50,"physical"),phys_6("Whiriwind", 70,40,"physical"),
-    phys_7("Nova Ascension",100,5,"physical");
+    phys_1("Slam",45,100,"physical"),phys_2("Swift Strike",50,85,"physical"),phys_3("Slash",60,70,"physical"),
+    phys_4("Slant",68,65,"physical"),phys_5("Slashing ray",75,50,"physical"),phys_6("Whiriwind", 78,40,"physical"),
+    phys_7("Nova Ascension",120,5,"physical");
 
     private final String PspellName;
     private final int ap;

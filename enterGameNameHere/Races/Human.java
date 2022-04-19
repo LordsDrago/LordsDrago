@@ -66,7 +66,7 @@ public class Human extends Good implements Physical {
     public void spellDisplay(){
         System.out.println("Your current spell are :");
         for (int i = 0 ; i < 3 ; i++){
-            System.out.println((i+1) + " : " + this.spellHum[i]);
+            System.out.println((i+1) + ": " + this.spellHum[i].getPspellName()+ " [Attack power: " + this.spellHum[i].getAp() + " | " + "Speed: " + this.spellHum[i].getSpeed() + " | " + "Element: " + this.spellHum[i].getElement() + "]");
         }
     }
 }
