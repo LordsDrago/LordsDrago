@@ -1,6 +1,6 @@
 package enterGameNameHere.Terrain;
 
-import enterGameNameHere.Errors;
+import enterGameNameHere.ErrorGame;
 import enterGameNameHere.Races.*;
 import java.util.Random;
 
@@ -110,8 +110,6 @@ public class Floor {
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.PLAYER);
                 else if(this.map[i][j].getIsEnd())
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.EXIT);
-                else if(this.map[i][j].getIsMonster())
-                    this.map[i][j].setDisplayCharacter(DisplayCharacter.MONSTER); // TODO : delete monster character
                 else 
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.EMPTY);
             }
@@ -233,16 +231,16 @@ public class Floor {
         Point transform = new Point(0, 0);
 
         switch (direction) {
-            case "up":
+            case "z":
                 transform.setY(transform.getY()-1);
                 break;
-            case "down":
+            case "s":
                 transform.setY(transform.getY()+1);
                 break;
-            case "right":
+            case "d":
                 transform.setX(transform.getX()+1);
                 break;
-            case "left":
+            case "q":
                 transform.setX(transform.getX()-1);
                 break;
         }
@@ -253,16 +251,16 @@ public class Floor {
     /**
      * Method that handles the movement of the player
      * @param direction the String of the wanted direction to move to
-     * @throws Errors if the direction goes in a wall
+     * @throws ErrorGame if the direction goes in a wall
      */
-    public void movePlayer(String direction) throws Errors {
+    public void movePlayer(String direction) throws ErrorGame {
         Point curPoint = player.getPoint();
         Point change = Floor.transformDirection(direction);
         int nextY = curPoint.getY() + change.getY(); 
         int nextX = curPoint.getX() + change.getX();
 
         if(map[nextY][nextX].getIsWall())
-            throw new Errors("The player cannot move in an incorrect place !");
+            throw new ErrorGame("The player cannot move in an incorrect place !");
 
         this.map[curPoint.getY()][curPoint.getX()].toggleIsPlayer();
         this.map[curPoint.getY()][curPoint.getX()].setDisplayCharacter(DisplayCharacter.EMPTY);

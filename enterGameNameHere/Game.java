@@ -14,10 +14,18 @@ public class Game {
      * Base constructor for a game
      */
     public Game(Scanner scan){
-        if(UserInterface.chooseRace(scan).equals("human"))
-            this.player = new Human(scan);
-        else
-            this.player = new Elf(scan);
+        boolean playerNotCreated = true;
+        while(playerNotCreated)
+            try {
+                if(UserInterface.chooseRace(scan).equals("human"))
+                    this.player = new Human(scan);
+                else
+                    this.player = new Elf(scan);
+                playerNotCreated = false;
+                } catch (ErrorGame wrongRaceInput) {
+                    UserInterface.printException(wrongRaceInput.getMessage());
+                }
+        
         this.curFloor = new Floor(player);
     }
 
@@ -54,8 +62,8 @@ public class Game {
     public void movePlayer(String direction) {
         try {
             this.curFloor.movePlayer(direction);
-        } catch (Errors e) {
-            System.out.println(e.getMessage());
+        } catch (ErrorGame cannotMoveToWall) {
+            UserInterface.printException(cannotMoveToWall.getMessage());
         }
             
     }
@@ -71,20 +79,20 @@ public class Game {
     /**
      * Handles the case where a monster is present on the current point, by retrieving it and starting a Battle
      * @param scan the System.in scanner
-     * @throws Errors if the player loses, to signify the end of the game
+     * @throws ErrorGame if the player loses, to signify the end of the game
      */
-    public void checkBattle(Scanner scan) throws Errors {
+    public void checkBattle(Scanner scan) throws ErrorGame {
         if(this.curFloor.checkIsMonster()){
             Evil curMonster;
             for(Evil monster: this.curFloor.getMonsters())
                 if(monster.getPoint().getY() == this.player.getPoint().getY() && monster.getPoint().getX() == this.player.getPoint().getX()){
                     curMonster = monster;
                     try {
-                        new Battle(this.player, curMonster, scan); // TODO remove monster when defeated
+                        new Battle(this.player, curMonster, scan);
                         this.curFloor.removeMonster(this.player.getPoint().getY(), this.player.getPoint().getX());
-                    } catch (Errors e) {
-                        System.out.println(e.getMessage());
-                        throw new Errors("gameEnd");
+                    } catch (ErrorGame playerLost) {
+                        System.out.println(playerLost.getMessage());
+                        throw new ErrorGame("gameEnd");
                     }
                     
                 }
@@ -95,15 +103,25 @@ public class Game {
      * The main body of the game, which specifies what happens in which order
      * @param scan the System.in scanner
      */
-    public void gameHandling(Scanner scan) {
+    public void gameHandling(Scanner scan) throws ExitGame {
         while(this.getFloorsLeft() != 0){
+            UserInterface.clearScreen();
             this.displayCurrentFloor();
-            movePlayer(UserInterface.selectMove(scan));
+
+            try {
+                movePlayer(UserInterface.selectMove(scan));
+            } catch (ErrorGame wrongMoveInput) {
+                UserInterface.printException(wrongMoveInput.getMessage());
+            } catch (ExitGame playerExitsGame) {
+                throw new ExitGame();
+            }
+
             try {
                 this.checkBattle(scan);
             } catch (Exception e) {
                 break;
             }
+
             this.checkAdvanceFloor();
         }
     }

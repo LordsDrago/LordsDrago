@@ -12,7 +12,12 @@ public class Main {
         DataManagement test = new DataManagement();
         
         test.addGame(scan);
-        test.getGames().get(0).gameHandling(scan);
+        try {
+            test.getGames().get(0).gameHandling(scan);
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        
 
 
 

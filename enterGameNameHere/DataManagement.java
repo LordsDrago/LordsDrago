@@ -19,15 +19,15 @@ public class DataManagement implements Serializable {
     /**
      * Saves the games in a predefined .txt file
      * @param games the ArrayList of games to be saved, in a limit of 3 games
-     * @throws Errors if the save is not successful, for various reasons
+     * @throws ErrorGame if the save is not successful, for various reasons
      */
-    public void saveGames() throws Errors{
+    public void saveGames() throws ErrorGame{
         File dataFile = new File(".\\gameData.txt");
 
         try {
             dataFile.createNewFile();
         } catch (IOException e) {
-            throw new Errors("File 'gameData.txt' could not be created !");
+            throw new ErrorGame("File 'gameData.txt' could not be created !");
         } 
 
         try (
@@ -39,9 +39,9 @@ public class DataManagement implements Serializable {
                 dataSavingStream.writeObject(this.allGames.get(i));
 
         } catch (FileNotFoundException e) {
-            throw new Errors("File 'gameData.txt' not found !");
+            throw new ErrorGame("File 'gameData.txt' not found !");
         } catch (IOException e) {
-            throw new Errors("Games data could not be saved to the file 'gameData.txt' !");
+            throw new ErrorGame("Games data could not be saved to the file 'gameData.txt' !");
         }
 
         System.out.println("Games saved successfully !");
@@ -50,9 +50,9 @@ public class DataManagement implements Serializable {
     /**
      * Loads the games from a predefined .txt file
      * @return the games load in an ArrayList
-     * @throws Errors if the load is not successful, for various reasons
+     * @throws ErrorGame if the load is not successful, for various reasons
      */
-    public void loadGames() throws Errors{
+    public void loadGames() throws ErrorGame{
         ArrayList<Game> games = new ArrayList<>();
         File dataFile = new File(".\\gameData.txt");
 
@@ -64,15 +64,15 @@ public class DataManagement implements Serializable {
                 games.add((Game)dataLoadingStream.readObject());
             }
         } catch (FileNotFoundException e) {
-            throw new Errors("File 'gameData.txt' not found !");
+            throw new ErrorGame("File 'gameData.txt' not found !");
         } catch (EOFException f) {
             while (games.size() > 3) {
                 games.remove(games.size() - 1);
             }
         } catch (IOException g) {
-            throw new Errors("Games data could not be loaded from the file 'gameData.txt' !");
+            throw new ErrorGame("Games data could not be loaded from the file 'gameData.txt' !");
         } catch (ClassNotFoundException h) {
-            throw new Errors("File 'gameData.txt' corrupted ! Please delete it or overwrite the contents with a new save !");
+            throw new ErrorGame("File 'gameData.txt' corrupted ! Please delete it or overwrite the contents with a new save !");
         }
         
         this.allGames = games;

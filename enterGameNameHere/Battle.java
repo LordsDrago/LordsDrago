@@ -9,23 +9,32 @@ public class Battle {
     * @param ennemy
     * @param scan
     */ 
-    public Battle(Good player , Evil ennemy , Scanner sc ) throws Errors{
+    public Battle(Good player , Evil ennemy , Scanner sc ) throws ErrorGame{
         int pSpell = 0 , eSpell = 0 ;
         boolean faster;
-        System.out.println("You are currently fighting a "+ennemy.getAdjective()+" "+ennemy.getClass().getSimpleName().toLowerCase()+" !"+"\n");
+
+        UserInterface.printException("You are currently fighting a "+ennemy.getAdjective()+" "+ennemy.getClass().getSimpleName().toLowerCase()+" !"+"\n");
+        
         while (!this.checkEnd(player.getHp(), ennemy.getHp())){
+            UserInterface.clearScreen();
+
             eSpell = ennemy.spellChoice(sc);
             System.out.println("You still have : " + player.getHp() + " HP | Your ennemy has still : " + ennemy.getHp() +" HP\n");
             pSpell = player.spellChoice(sc);
             sc.nextLine();
+
             faster = isPlayerFaster(player, ennemy, pSpell, eSpell);
+
             try {
                 round(player, ennemy, pSpell, eSpell, faster , isElement(player.getSpellElementAtPosition(pSpell), ennemy.getElement()) , isElement(ennemy.getSpellElementAtPosition(eSpell), player.getElement()));
-            } catch (Errors e) {} ;
+            } catch (ErrorGame battleEndedInMiddleOfRound) {} ;
+            UserInterface.wait(3);
         }
+
         this.battleEnd(player.getHp(), ennemy.getHp());
+
         if(player.getHp() <= 0)
-            throw new Errors("Game finished !");
+            throw new ErrorGame("Game finished !");
     }
 
     /**
@@ -69,6 +78,7 @@ public class Battle {
     public void battleEnd(int playerHp , int ennemyHp){
         if (playerHp > ennemyHp) System.out.println("You won");
         else System.out.println("You lost");
+        UserInterface.wait(2);
     }
 
     /**
@@ -80,14 +90,14 @@ public class Battle {
      * @param faster
      * @param pDamage
      * @param eDamage
-     * @throws Errors
+     * @throws ErrorGame
      */
-    public void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster , int pDamage , int eDamage) throws Errors{
+    public void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster , int pDamage , int eDamage) throws ErrorGame{
         if (faster){
             player.attack(ennemy , addDamage((Entity)player, pSpell) * pDamage);
             System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
             if (this.checkEnd(player.getHp(), ennemy.getHp()))
-                throw new Errors("Battle ended !");
+                throw new ErrorGame("Battle ended !");
             ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
             System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
         }
@@ -95,7 +105,7 @@ public class Battle {
             ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
             System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
             if (this.checkEnd(player.getHp(), ennemy.getHp()))
-                throw new Errors("Battle ended !");
+                throw new ErrorGame("Battle ended !");
             player.attack(ennemy ,addDamage((Entity)player, pSpell) * pDamage);
             System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
         }

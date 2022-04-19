@@ -1,12 +1,12 @@
 package enterGameNameHere;
 
-public class Errors extends Exception {
+public class ErrorGame extends Exception {
     
     /**
      * Errors constructor, allows to define a customized message for the error raised
      * @param message the customized message
      */
-    public Errors (String message){
+    public ErrorGame (String message){
         super(message);
     }
 
