@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    protected static DataManagement data = new DataManagement();
-
     /**
      * 
      * @param scan
