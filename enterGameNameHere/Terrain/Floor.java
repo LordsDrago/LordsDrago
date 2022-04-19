@@ -80,6 +80,9 @@ public class Floor {
         this.mapString = mapList[rd.nextInt(10)];
     }
 
+    /**
+     * Initializes the points properties for the starting and ending point of the floor
+     */
     private void initStartEnd() {
         Point start = this.mapString.getPlayerStart();
         Point end = this.mapString.getMapEnd();
@@ -201,7 +204,7 @@ public class Floor {
     }
 
     /**
-     * Function that displays the current floor, by iterating over every point of the map and displaying its associated character
+     * Method that displays the current floor, by iterating over every point of the map and displaying its associated character
      */
     public void displayFloor() {
         for(int i=0; i<this.map.length; i++){
@@ -211,10 +214,19 @@ public class Floor {
         }
     }
 
+    /**
+     * Gets the array of monsters contained in the floor
+     * @return the array of monsters contained in the floor
+     */
     public Evil[] getMonsters() {
         return this.monsters;
     }
 
+    /**
+     * Creates a point that will be used to determine the new position of the player after a move
+     * @param direction the direction in a String
+     * @return a Point that adjusts the position of the player
+     */
     private static Point transformDirection(String direction) {
         Point transform = new Point(0, 0);
 
@@ -236,6 +248,11 @@ public class Floor {
         return transform;
     }
 
+    /**
+     * Method that handles the movement of the player
+     * @param direction the String of the wanted direction to move to
+     * @throws Errors if the direction goes in a wall
+     */
     public void movePlayer(String direction) throws Errors {
         Point curPoint = player.getPoint();
         Point change = Floor.transformDirection(direction);
@@ -253,6 +270,10 @@ public class Floor {
         map[nextY][nextX].setDisplayCharacter(DisplayCharacter.PLAYER);
     }
 
+    /**
+     * Counts the number of points unoccupied on the floor
+     * @return an int with the number of points unoccupied on the floor
+     */
     private int getFreePoints() {
         int counter = 0;
         for(int i=1; i<=this.map.length - 2; i++)
@@ -262,6 +283,10 @@ public class Floor {
         return counter;
     }
 
+    /**
+     * Method which generates all the monsters to be contained on one floor
+     * @param ratio the percentage of free points that will contain a monster
+     */
     public void setMonsters(double ratio) { // ratio --> between 0 and 1
         Random rd = new Random();
         double approachedMonsterNumber = this.getFreePoints() * ratio;
@@ -274,6 +299,9 @@ public class Floor {
                 this.monsters[i] = new Goblin();
     }
 
+    /**
+     * Takes the array of monsters and places them on the floor, by toggling the isMonster property of the point and setting the position of the monster
+     */
     public void placeMonsters() {
         Random rd = new Random();
         Point temp;
@@ -286,10 +314,18 @@ public class Floor {
         }
     }
 
+    /**
+     * Checks if a monster is on the current point
+     * @return true if there is a monster, else, false
+     */
     public boolean checkIsMonster() {
         return this.map[this.player.getPoint().getY()][this.player.getPoint().getX()].getIsMonster();
     }
 
+    /**
+     * Checks if the end is on the current point
+     * @return true if there is the end, else, false
+     */
     public boolean checkIsEnd() {
         return this.map[this.player.getPoint().getY()][this.player.getPoint().getX()].getIsEnd();
     }
