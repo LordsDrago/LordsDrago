@@ -17,6 +17,7 @@ public class Battle {
             eSpell = ennemy.spellChoice(sc);
             System.out.println("You still have : " + player.getHp() + " HP | Your ennemy has still : " + ennemy.getHp() +" HP");
             pSpell = player.spellChoice(sc);
+            sc.nextLine();
             faster = isPlayerFaster(player, ennemy, pSpell, eSpell);
             try {
                 round(player, ennemy, pSpell, eSpell, faster , isElement(player.getSpellElementAtPosition(pSpell), ennemy.getElement()) , isElement(ennemy.getSpellElementAtPosition(eSpell), player.getElement()));
