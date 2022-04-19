@@ -109,6 +109,6 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Floors left : " + this.floorsLeft + " / Race : " + this.player.getClass().getSimpleName() + " / Name : " + this.player. + " / HP : " + this.player.getHp();
+        return "Floors left : " + this.floorsLeft + " / Race : " + this.player.getClass().getSimpleName() + " / Name : " + this.player.getName() + " / HP : " + this.player.getHp();
     }
 }
