@@ -10,14 +10,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Files implements Serializable {
+public class DataManagement implements Serializable {
+
+    protected ArrayList<Game> allGames = new ArrayList<>();
+
     /**
      * Saves the games in a predefined .txt file
      * @param games the ArrayList of games to be saved, in a limit of 3 games
      * @throws Errors if the save is not successful, for various reasons
      */
-    public static void saveGames(ArrayList<Game> games) throws Errors{
+    public void saveGames() throws Errors{
         File dataFile = new File(".\\gameData.txt");
 
         try {
@@ -31,8 +35,8 @@ public class Files implements Serializable {
             ObjectOutputStream dataSavingStream = new ObjectOutputStream(outputStream);
         ) {
             
-            for(int i=0; i<games.size() && i<3; i++)
-                dataSavingStream.writeObject(games.get(i));
+            for(int i=0; i<this.allGames.size(); i++)
+                dataSavingStream.writeObject(this.allGames.get(i));
 
         } catch (FileNotFoundException e) {
             throw new Errors("File 'gameData.txt' not found !");
@@ -48,7 +52,7 @@ public class Files implements Serializable {
      * @return the games load in an ArrayList
      * @throws Errors if the load is not successful, for various reasons
      */
-    public static ArrayList<Game> loadGames() throws Errors{
+    public void loadGames() throws Errors{
         ArrayList<Game> games = new ArrayList<>();
         File dataFile = new File(".\\gameData.txt");
 
@@ -71,6 +75,17 @@ public class Files implements Serializable {
             throw new Errors("File 'gameData.txt' corrupted ! Please delete it or overwrite the contents with a new save !");
         }
         
-        return games;
+        this.allGames = games;
     }
+
+    public ArrayList<Game> getGames() {
+        return this.allGames;
+    }
+
+    public void addGame(Scanner scan) {
+        this.allGames.add(new Game(scan));
+    }
+
+    // TODO Launch selected game (with index)
+    // TODO when game ends, see if game is added to saved data
 }

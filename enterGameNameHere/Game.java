@@ -14,7 +14,7 @@ public class Game {
      * Base constructor for a game
      */
     public Game(Scanner scan){
-        if(userInterface.chooseRace(scan).equals("human"))
+        if(UserInterface.chooseRace(scan).equals("human"))
             this.player = new Human(scan);
         else
             this.player = new Elf(scan);
@@ -80,7 +80,7 @@ public class Game {
                 if(monster.getPoint().getY() == this.player.getPoint().getY() && monster.getPoint().getX() == this.player.getPoint().getX()){
                     curMonster = monster;
                     try {
-                        new Battle(this.player, curMonster, scan);
+                        new Battle(this.player, curMonster, scan); // TODO remove monster when defeated
                     } catch (Errors e) {
                         System.out.println(e.getMessage());
                         throw new Errors("gameEnd");
@@ -97,7 +97,7 @@ public class Game {
     public void gameHandling(Scanner scan) {
         while(this.getFloorsLeft() != 0){
             this.displayCurrentFloor();
-            movePlayer(userInterface.selectMove(scan));
+            movePlayer(UserInterface.selectMove(scan));
             try {
                 this.checkBattle(scan);
             } catch (Exception e) {

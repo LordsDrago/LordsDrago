@@ -2,7 +2,10 @@ package enterGameNameHere;
 
 import java.util.Scanner;
 
-public class userInterface {
+public class UserInterface {
+
+    protected static DataManagement data = new DataManagement();
+
     /**
      * 
      * @param scan
@@ -33,3 +36,18 @@ public class userInterface {
         System.out.flush();  
     }  
 }
+
+/*
+STATIC MENU
+New game
+Play a saved game
+Load games
+Save games
+Exit
+------------------------------
+display games in ArrayList
+--> when exiting current game (0 / 1 / 2 / 3)
+--> when choosing a game to play (1 / 2 / 3)
+--------------------------------
+implement exit in-game
+*/
