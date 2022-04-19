@@ -64,7 +64,7 @@ public class Human extends Good implements Physical {
 
     @Override
     public void spellDisplay(){
-        System.out.println("Your actual spell are :");
+        System.out.println("Your current spell are :");
         for (int i = 0 ; i < 3 ; i++){
             System.out.println((i+1) + " : " + this.spellHum[i]);
         }
