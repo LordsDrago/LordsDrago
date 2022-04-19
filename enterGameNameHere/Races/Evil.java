@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public abstract class Evil extends Entity {
-
+    
     /**
       * Create an evil entity
       */

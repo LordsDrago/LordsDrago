@@ -56,7 +56,7 @@ public class Elf extends Good implements Magic {
 
     @Override
     public void spellDisplay(){
-        System.out.println("Your actual spell are :");
+        System.out.println("Your current spells are :");
         for (int i = 0 ; i < 3 ; i++){
             System.out.println((i+1) + " : " + this.spellElf[i]);
         }
