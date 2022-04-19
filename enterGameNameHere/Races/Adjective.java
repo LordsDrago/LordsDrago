@@ -8,10 +8,18 @@ public enum Adjective {
 
     private final String adjective;
 
+    /**
+     * Constructor for adjective
+     * @param adjective
+     */
     private Adjective(String adjective){
         this.adjective = adjective;
     }
 
+    /**
+     * Getting the adjective
+     * @return A string adjective
+     */
     public String getAdjective(){
         return this.adjective;
     }

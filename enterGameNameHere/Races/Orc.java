@@ -8,6 +8,9 @@ import enterGameNameHere.Physcial_Damage.Pspell;
 public class Orc extends Evil implements Physical {
 
     public final Pspell spellOrc[] = new Pspell[3];
+    /**
+     * Constructor, allow to create an Orc and giving randomly spells
+     */
     public Orc(){
         super();
         this.getPspell();

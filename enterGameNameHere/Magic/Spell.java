@@ -16,6 +16,13 @@ public enum Spell {
     private final int speed;
     private final String element;
 
+    /**
+     * Constructor for the spell
+     * @param spellName
+     * @param ap
+     * @param speed
+     * @param element
+     */
     private Spell(String spellName, int ap , int speed , String element){
         this.spellName = spellName;
         this.ap = ap;
@@ -23,18 +30,34 @@ public enum Spell {
         this.element = element;
     }
 
+    /**
+     * Getting the spell name
+     * @return A string spellName
+     */
     public String getSpellName(){
         return this.spellName;
     }
 
+    /**
+     * Getting the attack power of the spell
+     * @return An int ap
+     */
     public int getAp(){
         return this.ap;
     }
 
+    /**
+     * Getting the speed of the spell
+     * @return An int speed
+     */
     public int getSpeed(){
         return this.speed;
     }
 
+    /**
+     * Getting the element of the spell
+     * @return A string element
+     */
     public String getElement(){
         return this.element;
     }

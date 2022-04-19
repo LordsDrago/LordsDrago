@@ -8,6 +8,10 @@ public class Elf extends Good implements Magic {
     public final static String elementList[] = {"fire","water","grass"};
     public final Spell spellElf[] = new Spell[3];
 
+    /**
+     * Constructor for an elf, it create an entity elf and attribute spells randomly
+     * @param scan
+     */
     public Elf(Scanner scan){
         super(scan);
         this.getSpell();
@@ -49,6 +53,7 @@ public class Elf extends Good implements Magic {
             spellElf[i] = Magic.spell[rd.nextInt(27)];
         }
     }
+
     @Override
     public void spellDisplay(){
         System.out.println("Your actual spell are :");

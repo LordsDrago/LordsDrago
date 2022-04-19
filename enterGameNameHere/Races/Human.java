@@ -9,9 +9,8 @@ import enterGameNameHere.Physcial_Damage.Pspell;
 public class Human extends Good implements Physical {
     public final Pspell spellHum[] = new Pspell[3];
     
-
     /**
-     * Construcor , to create an human
+     * Construcor , allow to create an human and getting randomly spells
      * @param specie
      * @param name
      * @param strength
@@ -63,10 +62,6 @@ public class Human extends Good implements Physical {
         return this.spellHum[position].getElement();
     }
 
-
-    /**
-     * Display the spell of this human
-     */
     @Override
     public void spellDisplay(){
         System.out.println("Your actual spell are :");
@@ -74,7 +69,4 @@ public class Human extends Good implements Physical {
             System.out.println((i+1) + " : " + this.spellHum[i]);
         }
     }
-
-
-
 }

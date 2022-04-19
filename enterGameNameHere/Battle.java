@@ -1,9 +1,5 @@
 package enterGameNameHere;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.zip.CheckedInputStream;
-
-import enterGameNameHere.Physcial_Damage.Physical;
 import enterGameNameHere.Races.*;
  
 public class Battle {
@@ -30,6 +26,7 @@ public class Battle {
         if(player.getHp() <= 0)
             throw new Errors("Game finished !");
     }
+
     /**
      * Allow to see how much damage the element do to the ennemy
      * @param elementP
@@ -53,15 +50,37 @@ public class Battle {
         return -1;
     }
 
+    /**
+     * Check if neither the player or ennemy has under 0 hp
+     * @param playerHp
+     * @param ennemyHp
+     * @return True if either of them has under 0 hp
+     */
     public boolean checkEnd(int playerHp , int ennemyHp){
         return playerHp <= 0 || ennemyHp <= 0 ;
     }
 
+    /**
+     * Display if the player won or loose (comparing the player and ennemy hp)
+     * @param playerHp
+     * @param ennemyHp
+     */
     public void battleEnd(int playerHp , int ennemyHp){
         if (playerHp > ennemyHp) System.out.println("You won");
         else System.out.println("You lost");
     }
 
+    /**
+     * A method that handles a round
+     * @param player
+     * @param ennemy
+     * @param pSpell
+     * @param eSpell
+     * @param faster
+     * @param pDamage
+     * @param eDamage
+     * @throws Errors
+     */
     public void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster , int pDamage , int eDamage) throws Errors{
         if (faster){
             player.attack(ennemy , addDamage((Entity)player, pSpell) * pDamage);
@@ -80,6 +99,15 @@ public class Battle {
             System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
         }
     }
+
+    /**
+     * A methods that see who is faster
+     * @param player
+     * @param ennemy
+     * @param pSpell
+     * @param eSpell
+     * @return True if the player is faster and false if the ennemy is
+     */
     public boolean isPlayerFaster(Good player , Evil ennemy , int pSpell , int eSpell) {
         int pSpeed = player.getSpellSpeedAtPosition(pSpell);
         int eSpeed = ennemy.getSpellSpeedAtPosition(eSpell);
@@ -88,15 +116,13 @@ public class Battle {
         else return false;
     }
 
+    /**
+     * A methods that gives the damage of the chosen spell 
+     * @param character
+     * @param spell
+     * @return The value of the spell damage
+     */
     public int addDamage(Entity character , int spell){
           return character.getSpellDamageAtPosition(spell);
-    }
-
-    /**
-     * Easier to write than System.out.println, do the same thing but faster
-     * @param string
-     */
-    public void printf(String string){
-        System.out.println(string);
     }
 }

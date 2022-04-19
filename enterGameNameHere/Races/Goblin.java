@@ -6,6 +6,10 @@ import enterGameNameHere.Magic.Spell;
 public class Goblin extends Evil implements Magic {
     public final static String elementList[] = {"fire","water","grass"};
     public final Spell spellGob[] = new Spell[3];
+
+    /** 
+     * Constructor, create a goblin and attribute spells randomly
+     */
     public Goblin(){
         super();
         this.getSpell();
@@ -37,7 +41,6 @@ public class Goblin extends Evil implements Magic {
             spellGob[i] = Magic.spell[rd.nextInt(27)];
         }
     }
-
     
     @Override
     public int getSpellDamageAtPosition(int position){

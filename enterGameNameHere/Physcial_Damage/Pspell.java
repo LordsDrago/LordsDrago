@@ -10,6 +10,13 @@ public enum Pspell {
     private final int speed;
     private final String element;
 
+    /**
+     * Constructor for a physical spell
+     * @param PspellName
+     * @param ap
+     * @param speed
+     * @param element
+     */
     private Pspell(String PspellName , int ap , int speed , String element){
         this.PspellName = PspellName;
         this.ap = ap;
@@ -17,18 +24,34 @@ public enum Pspell {
         this.element = element;
     }
 
+    /**
+     * Getting the name of the physical spell
+     * @return A string PspellName
+     */
     public String getPspellName(){
         return this.PspellName;
     }
 
+    /**
+     * Getting the attack power of the physical spell
+     * @return An int ap
+     */
     public int getAp(){
         return this.ap;
     }
 
+    /**
+     * Getting the speed of the physical spell
+     * @return An int speed
+     */
     public int getSpeed(){
         return this.speed;
     }
 
+    /**
+     * Getting the element of the physical spell
+     * @return A string element
+     */
     public String getElement(){
         return this.element;
     }
