@@ -317,6 +317,15 @@ public class Floor {
     }
 
     /**
+     * Removes the isMonster tag at the specified coordinates
+     * @param y the y coordinate of the monster to be removed
+     * @param x the x coordinate of the monster to be removed
+     */
+    public void removeMonster(int y, int x) {
+        this.map[y][x].toggleIsMonster();
+    }
+
+    /**
      * Checks if a monster is on the current point
      * @return true if there is a monster, else, false
      */

@@ -81,6 +81,7 @@ public class Game {
                     curMonster = monster;
                     try {
                         new Battle(this.player, curMonster, scan); // TODO remove monster when defeated
+                        this.curFloor.removeMonster(this.player.getPoint().getY(), this.player.getPoint().getX());
                     } catch (Errors e) {
                         System.out.println(e.getMessage());
                         throw new Errors("gameEnd");
