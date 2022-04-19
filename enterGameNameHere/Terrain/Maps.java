@@ -207,6 +207,12 @@ public enum Maps {
     private final Point mapEnd;
 
 
+    /**
+     * The private constructor for the enum Maps
+     * @param map the array of String representing the walls of the map
+     * @param start the starting point
+     * @param end the ending point
+     */
     private Maps(String[] map, Point start, Point end){
         this.map = map;
         this.playerStart = start;

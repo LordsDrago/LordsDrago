@@ -5,6 +5,10 @@ public enum DisplayCharacter {
 
     private final char characterPoint;
 
+    /**
+     * Private constructor for the enum DisplayCharacter
+     * @param symbol the character associated to the enum object 
+     */
     private DisplayCharacter(char symbol){
         this.characterPoint = symbol;
     }

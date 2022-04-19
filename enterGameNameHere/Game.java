@@ -39,10 +39,18 @@ public class Game {
         }
     }
 
+    /**
+     * Gets the number of floors left
+     * @return the int with the number of floors left
+     */
     private int getFloorsLeft(){
         return this.floorsLeft;
     }
 
+    /**
+     * Executes the movePlayer method of the current floor
+     * @param direction the String with the direction wanted by the player
+     */
     public void movePlayer(String direction) {
         try {
             this.curFloor.movePlayer(direction);
@@ -52,11 +60,19 @@ public class Game {
             
     }
 
+    /**
+     * Checks if the end of the floor is reached
+     */
     public void checkAdvanceFloor() {
         if(this.curFloor.checkIsEnd())
             this.advanceFloor();
     }
 
+    /**
+     * Handles the case where a monster is present on the current point, by retrieving it and starting a Battle
+     * @param scan the System.in scanner
+     * @throws Errors if the player loses, to signify the end of the game
+     */
     public void checkBattle(Scanner scan) throws Errors {
         if(this.curFloor.checkIsMonster()){
             Evil curMonster;
@@ -74,6 +90,10 @@ public class Game {
         }       
     }
 
+    /**
+     * The main body of the game, which specifies what happens in which order
+     * @param scan the System.in scanner
+     */
     public void gameHandling(Scanner scan) {
         while(this.getFloorsLeft() != 0){
             this.displayCurrentFloor();

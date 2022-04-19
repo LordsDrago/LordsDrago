@@ -12,7 +12,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Files implements Serializable {
-    public void saveGames(ArrayList<Game> games) throws Errors{
+    /**
+     * Saves the games in a predefined .txt file
+     * @param games the ArrayList of games to be saved, in a limit of 3 games
+     * @throws Errors if the save is not successful, for various reasons
+     */
+    public static void saveGames(ArrayList<Game> games) throws Errors{
         File dataFile = new File(".\\gameData.txt");
 
         try {
@@ -38,7 +43,12 @@ public class Files implements Serializable {
         System.out.println("Games saved successfully !");
     }
 
-    public ArrayList<Game> loadGames() throws Errors{
+    /**
+     * Loads the games from a predefined .txt file
+     * @return the games load in an ArrayList
+     * @throws Errors if the load is not successful, for various reasons
+     */
+    public static ArrayList<Game> loadGames() throws Errors{
         ArrayList<Game> games = new ArrayList<>();
         File dataFile = new File(".\\gameData.txt");
 
