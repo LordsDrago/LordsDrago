@@ -106,4 +106,9 @@ public class Game {
             this.checkAdvanceFloor();
         }
     }
+
+    @Override
+    public String toString() {
+        return "Floors left : " + this.floorsLeft + " / Race : " + this.player.getClass().getSimpleName() + " / Name : " + this.player. + " / HP : " + this.player.getHp();
+    }
 }
