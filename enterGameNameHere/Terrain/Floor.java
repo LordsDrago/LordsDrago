@@ -41,9 +41,9 @@ public class Floor {
         this.initExtWalls();
         this.initIntWalls();
         this.initStartEnd();
-        this.setDisplayCharacters();
         this.setMonsters(0.1);
         this.placeMonsters();
+        this.setDisplayCharacters();
     }
 
     /**
