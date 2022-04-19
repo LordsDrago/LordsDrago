@@ -111,7 +111,7 @@ public class Floor {
                 else if(this.map[i][j].getIsEnd())
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.EXIT);
                 else if(this.map[i][j].getIsMonster())
-                    this.map[i][j].setDisplayCharacter(DisplayCharacter.MONSTER);
+                    this.map[i][j].setDisplayCharacter(DisplayCharacter.MONSTER); // TODO : delete monster character
                 else 
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.EMPTY);
             }
