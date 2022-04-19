@@ -1,7 +1,7 @@
 package enterGameNameHere.Terrain;
 
 public enum DisplayCharacter {
-    CORNER('+'), WALL_VERTICAL('|'), WALL_HORIZONTAL('-'), PLAYER('O'), EMPTY(' '), EXIT('@');
+    CORNER('+'), WALL_VERTICAL('|'), WALL_HORIZONTAL('-'), PLAYER('O'), EMPTY(' '), EXIT('@'), MONSTER('X');
 
     private final char characterPoint;
 

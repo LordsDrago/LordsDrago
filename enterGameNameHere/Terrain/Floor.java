@@ -41,9 +41,9 @@ public class Floor {
         this.initExtWalls();
         this.initIntWalls();
         this.initStartEnd();
-        this.setDisplayCharacters();
         this.setMonsters(0.1);
         this.placeMonsters();
+        this.setDisplayCharacters();
     }
 
     /**
@@ -110,6 +110,8 @@ public class Floor {
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.PLAYER);
                 else if(this.map[i][j].getIsEnd())
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.EXIT);
+                else if(this.map[i][j].getIsMonster())
+                    this.map[i][j].setDisplayCharacter(DisplayCharacter.MONSTER);
                 else 
                     this.map[i][j].setDisplayCharacter(DisplayCharacter.EMPTY);
             }
