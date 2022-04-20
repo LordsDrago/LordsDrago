@@ -99,9 +99,4 @@ Exit
 display games in ArrayList
 --> when exiting current game (0 / 1 / 2 / 3)
 --> when choosing a game to play (1 / 2 / 3)
---------------------------------
-implement exit in-game
 */
-
-// TODO : Fix wrong inputs when choosing spell !
-// Otherwise, game runs well and supports wrong inputs !
