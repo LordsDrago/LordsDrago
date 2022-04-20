@@ -1,5 +1,6 @@
 package enterGameNameHere.Races;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import enterGameNameHere.Physcial_Damage.Physical;
@@ -37,8 +38,23 @@ public class Orc extends Evil implements Physical {
     @Override
     public void getPspell(){
         Random rd = new Random();
-        for (int i = 0 ; i < 3 ; i++)
-            spellOrc[i] = Physical.pspell[rd.nextInt(7)];
+        ArrayList<Integer> tempA = new ArrayList<>();
+        int temp;
+        for (int i = 0 ; i < 3 ; i++){
+            temp = rd.nextInt(7);
+            if (tempA.contains(temp)){
+                while(tempA.contains(temp)){
+                    temp = rd.nextInt(7);
+                }
+                tempA.add(temp);
+                spellOrc[i] = Physical.pspell[temp];
+            }
+            else spellOrc[i] = Physical.pspell[temp];
+            if (i == 0){
+                tempA.add(temp);
+                spellOrc[i] = Physical.pspell[temp];
+            }
+        }
     }
 
     @Override

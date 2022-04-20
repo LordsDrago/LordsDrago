@@ -1,8 +1,7 @@
 package enterGameNameHere.Races;
-
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
 import enterGameNameHere.Physcial_Damage.Physical;
 import enterGameNameHere.Physcial_Damage.Pspell;
 
@@ -52,8 +51,22 @@ public class Human extends Good implements Physical {
     @Override
     public void getPspell(){
         Random rd = new Random();
+        ArrayList<Integer> tempA = new ArrayList<>();
+        int temp;
         for (int i = 0 ; i < 3 ; i++){
-            spellHum[i] = Physical.pspell[rd.nextInt(7)];
+            temp = rd.nextInt(7);
+            if (tempA.contains(temp)){
+                while(tempA.contains(temp)){
+                    temp = rd.nextInt(7);
+                }
+                tempA.add(temp);
+                spellHum[i] = Physical.pspell[temp];
+            }
+            else spellHum[i] = Physical.pspell[temp];
+            if (i == 0){
+                tempA.add(temp);
+                spellHum[i] = Physical.pspell[temp];
+            }
         }
     }
 

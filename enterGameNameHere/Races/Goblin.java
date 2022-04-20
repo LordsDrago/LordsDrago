@@ -1,4 +1,5 @@
 package enterGameNameHere.Races;
+import java.util.ArrayList;
 import java.util.Random;
 import enterGameNameHere.Magic.Magic;
 import enterGameNameHere.Magic.Spell;
@@ -37,8 +38,22 @@ public class Goblin extends Evil implements Magic {
     @Override
     public void getSpell(){
         Random rd = new Random();
+        ArrayList<Integer> tempA = new ArrayList<>();
+        int temp;
         for (int i = 0 ; i < 3 ; i++){
-            spellGob[i] = Magic.spell[rd.nextInt(27)];
+            temp = rd.nextInt(27);
+            if (tempA.contains(temp)){
+                while(tempA.contains(temp)){
+                    temp = rd.nextInt(27);
+                }
+                tempA.add(temp);
+                spellGob[i] = Magic.spell[temp];
+            }
+            else spellGob[i] = Magic.spell[temp];
+            if (i == 0){
+                tempA.add(temp);
+                spellGob[i] = Magic.spell[temp];
+            }
         }
     }
     

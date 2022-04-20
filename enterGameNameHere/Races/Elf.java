@@ -1,4 +1,5 @@
 package enterGameNameHere.Races;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import enterGameNameHere.Magic.Magic;
@@ -49,8 +50,22 @@ public class Elf extends Good implements Magic {
     @Override
     public void getSpell(){
         Random rd = new Random();
+        ArrayList<Integer> tempA = new ArrayList<>();
+        int temp;
         for (int i = 0 ; i < 3 ; i++){
-            spellElf[i] = Magic.spell[rd.nextInt(27)];
+            temp = rd.nextInt(27);
+            if (tempA.contains(temp)){
+                while(tempA.contains(temp)){
+                    temp = rd.nextInt(27);
+                }
+                tempA.add(temp);
+                spellElf[i] = Magic.spell[temp];
+            }
+            else spellElf[i] = Magic.spell[temp];
+            if (i == 0){
+                tempA.add(temp);
+                spellElf[i] = Magic.spell[temp];
+            }
         }
     }
 
