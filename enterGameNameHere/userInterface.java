@@ -60,6 +60,32 @@ public class UserInterface {
         System.out.println(exceptionMessage);
         UserInterface.wait(3);
     }
+
+    public static void winScreen(String playerName) {
+        UserInterface.clearScreen();
+
+        System.out.print("+");
+        for(int i=0; i<playerName.length() + 39; i++)
+            System.out.print("-");
+        System.out.println("+");
+
+        System.out.print("|");
+        for(int i=0; i<playerName.length() + 39; i++)
+            System.out.print(" ");
+        System.out.println("|");
+
+        System.out.println("|     Congratulations, " + playerName + ", you won !      |"); // 22 + playerName + 17
+        
+        System.out.print("|");
+        for(int i=0; i<playerName.length() + 39; i++)
+            System.out.print(" ");
+        System.out.println("|");
+
+        System.out.print("+");
+        for(int i=0; i<playerName.length() + 39; i++)
+            System.out.print("-");
+        System.out.println("+");
+    }
 }
 
 /*

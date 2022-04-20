@@ -18,17 +18,23 @@ public class Battle {
         while (!this.checkEnd(player.getHp(), ennemy.getHp())){
             UserInterface.clearScreen();
 
-            eSpell = ennemy.spellChoice(sc);
-            System.out.println("You still have : " + player.getHp() + " HP | Your ennemy has still : " + ennemy.getHp() +" HP\n");
-            pSpell = player.spellChoice(sc);
-            sc.nextLine();
-
-            faster = isPlayerFaster(player, ennemy, pSpell, eSpell);
-
             try {
-                round(player, ennemy, pSpell, eSpell, faster , isElement(player.getSpellElementAtPosition(pSpell), ennemy.getElement()) , isElement(ennemy.getSpellElementAtPosition(eSpell), player.getElement()));
-            } catch (ErrorGame battleEndedInMiddleOfRound) {} ;
-            UserInterface.wait(3);
+                eSpell = ennemy.spellChoice(sc);
+                System.out.println("You still have : " + player.getHp() + " HP | Your ennemy has still : " + ennemy.getHp() +" HP\n");
+                pSpell = player.spellChoice(sc);
+
+                faster = isPlayerFaster(player, ennemy, pSpell, eSpell);
+
+                try {
+                    round(player, ennemy, pSpell, eSpell, faster , isElement(player.getSpellElementAtPosition(pSpell), ennemy.getElement()) , isElement(ennemy.getSpellElementAtPosition(eSpell), player.getElement()));
+                } catch (ErrorGame battleEndedInMiddleOfRound) {} ;
+                UserInterface.wait(3);
+            } catch (ErrorGame wrongSpellInput) {
+                UserInterface.printException(wrongSpellInput.getMessage());
+            } catch (ExitGame gameExit) {
+                ennemy.attack(player, player.getHp());
+            }
+            
         }
 
         this.battleEnd(player.getHp(), ennemy.getHp());

@@ -2,6 +2,9 @@ package enterGameNameHere.Races;
 import java.util.Random;
 import java.util.Scanner;
 
+import enterGameNameHere.ErrorGame;
+import enterGameNameHere.ExitGame;
+import enterGameNameHere.UserInterface;
 import enterGameNameHere.Terrain.*;
 
 
@@ -40,7 +43,7 @@ public abstract class Entity {
     * @param scan
     * @return The index of the chosen spell
     */
-    public abstract int spellChoice(Scanner scan);
+    public abstract int spellChoice(Scanner scan) throws ErrorGame, ExitGame;
 
     /**
     * Setting the entity Strength
@@ -94,6 +97,7 @@ public abstract class Entity {
     public void putMaxHp() {
       System.out.println("You have been healed and gained back all of your HP !");
       this.curHp = this.maxHp;
+      UserInterface.wait(3);
     }
 
     /**

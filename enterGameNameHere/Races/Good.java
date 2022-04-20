@@ -2,6 +2,9 @@ package enterGameNameHere.Races;
 
 import java.util.Scanner;
 
+import enterGameNameHere.ErrorGame;
+import enterGameNameHere.ExitGame;
+
 public abstract class Good extends Entity {
     protected String name;
 
@@ -34,9 +37,14 @@ public abstract class Good extends Entity {
     }
     
     @Override
-    public int spellChoice(Scanner scan){
+    public int spellChoice(Scanner scan) throws ErrorGame, ExitGame{
         this.spellDisplay();
         System.out.println("Which spell do you want to use ?");
-        return scan.nextInt() - 1; // Exception à faire !!!
+        String input = scan.nextLine(); 
+        if(input.equals("exit"))
+            throw new ExitGame();
+        else if(!input.equals("1") && !input.equals("2") && !input.equals("3"))
+            throw new ErrorGame("Please enter a correct spell to cast !");
+        return Integer.parseInt(input) - 1;
     }
 }

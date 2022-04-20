@@ -124,6 +124,8 @@ public class Game {
 
             this.checkAdvanceFloor();
         }
+        if(this.getFloorsLeft() == 0)
+            UserInterface.winScreen(this.player.getName());
     }
 
     /**
