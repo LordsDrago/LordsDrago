@@ -1,5 +1,6 @@
 package enterGameNameHere;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -88,6 +89,45 @@ public class UserInterface {
             System.out.print(" ");
         System.out.println("|");
     }
+    
+    public static void gameMenu(){
+        System.out.println("+-----------------------------+");
+        System.out.println("|                             |");
+        System.out.println("|         1.New game	      |");
+        System.out.println("|     2.Play a saved game     |");
+        System.out.println("|         3.Load games        |");
+        System.out.println("|         4.Save games        |");
+        System.out.println("|           5.Exit            |");
+        System.out.println("|                             |");
+        System.out.println("+-----------------------------+");
+
+    }
+
+    public static void displayCurrentGame(ArrayList<Game> allGames){
+        int temp = 0;
+        for (int i = 0 ; i < allGames.size() ; i++){
+            if (allGames.get(i).toString().length() > temp)
+                temp = allGames.get(i).toString().length();
+        }
+        winScreenBorderLine(temp+24);
+        System.out.println("Which game do you want to erase ?");
+        System.out.print(">>> Your current game : ");
+        allGames.get(allGames.size()-1).printGameInfo();
+        displaySavedGame(allGames);
+        winScreenBorderLine(temp+24);
+    }
+
+
+
+    public static void displaySavedGame(ArrayList<Game> allGames){
+        int temp = allGames.size();
+        if (temp == 4) temp = 3;
+        for (int i = 0 ; i < temp ; i++){
+            System.out.print(">>> Save "+(i+1)+" : ");
+            allGames.get(i).printGameInfo();
+        }
+    }
+
 }
 
 /*
