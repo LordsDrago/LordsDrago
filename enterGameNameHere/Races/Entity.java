@@ -58,6 +58,12 @@ public abstract class Entity {
     abstract public void setHp();
 
     /**
+    * Setting elements for the current entity
+    * @param element
+    */
+    abstract public void setElement();
+
+    /**
      * Sets all the entities attributes
      */
     public Entity(){
@@ -124,11 +130,6 @@ public abstract class Entity {
         return this.position;
     }
 
-    /**
-    * Setting elements for the current entity
-    * @param element
-    */
-    abstract public void setElement();
 
     /**
     * Getting the element of the current entity
