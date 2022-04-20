@@ -64,27 +64,29 @@ public class UserInterface {
     public static void winScreen(String playerName) {
         UserInterface.clearScreen();
 
-        System.out.print("+");
-        for(int i=0; i<playerName.length() + 39; i++)
-            System.out.print("-");
-        System.out.println("+");
+        int innerLength = playerName.length() + 39;
 
-        System.out.print("|");
-        for(int i=0; i<playerName.length() + 39; i++)
-            System.out.print(" ");
-        System.out.println("|");
-
-        System.out.println("|     Congratulations, " + playerName + ", you won !      |"); // 22 + playerName + 17
+        UserInterface.winScreenBorderLine(innerLength);
+        UserInterface.winScreenMiddleLine(innerLength);
         
-        System.out.print("|");
-        for(int i=0; i<playerName.length() + 39; i++)
-            System.out.print(" ");
-        System.out.println("|");
+        System.out.println("|     Congratulations, " + playerName + ", you won !      |");
+        
+        UserInterface.winScreenMiddleLine(innerLength);
+        UserInterface.winScreenBorderLine(innerLength);
+    }
 
+    private static void winScreenBorderLine(int length) {
         System.out.print("+");
-        for(int i=0; i<playerName.length() + 39; i++)
+        for(int i=0; i<length; i++)
             System.out.print("-");
         System.out.println("+");
+    }
+
+    private static void winScreenMiddleLine(int length) {
+        System.out.print("|");
+        for(int i=0; i<length; i++)
+            System.out.print(" ");
+        System.out.println("|");
     }
 }
 
