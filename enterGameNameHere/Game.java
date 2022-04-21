@@ -1,11 +1,12 @@
 package enterGameNameHere;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import enterGameNameHere.Races.*;
 import enterGameNameHere.Terrain.Floor;
 
-public class Game {
+public class Game implements Serializable{
     protected Floor curFloor;
     protected int floorsLeft = 3;
     protected Good player;
@@ -81,7 +82,7 @@ public class Game {
      * @param scan the System.in scanner
      * @throws ErrorGame if the player loses, to signify the end of the game
      */
-    public void checkBattle(Scanner scan) throws ErrorGame {
+    public void checkBattle(Scanner scan) throws ErrorGame, ExitGame {
         if(this.curFloor.checkIsMonster()){
             Evil curMonster;
             for(Evil monster: this.curFloor.getMonsters())
@@ -93,6 +94,8 @@ public class Game {
                     } catch (ErrorGame playerLost) {
                         System.out.println(playerLost.getMessage());
                         throw new ErrorGame("gameEnd");
+                    } catch (ExitGame gameExit) {
+                        throw new ExitGame();
                     }
                     
                 }
@@ -105,6 +108,16 @@ public class Game {
      */
     public void gameHandling(Scanner scan) throws ExitGame {
         while(this.getFloorsLeft() != 0){
+            try {
+                this.checkBattle(scan);
+            } catch (ErrorGame playerLost) {
+                break;
+            } catch (ExitGame gameExit) {
+                throw new ExitGame();
+            }
+
+            this.checkAdvanceFloor();
+
             UserInterface.clearScreen();
             this.displayCurrentFloor();
 
@@ -115,14 +128,6 @@ public class Game {
             } catch (ExitGame playerExitsGame) {
                 throw new ExitGame();
             }
-
-            try {
-                this.checkBattle(scan);
-            } catch (Exception e) {
-                break;
-            }
-
-            this.checkAdvanceFloor();
         }
         if(this.getFloorsLeft() == 0)
             UserInterface.winScreen(this.player.getName());

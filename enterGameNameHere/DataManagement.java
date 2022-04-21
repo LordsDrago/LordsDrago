@@ -38,6 +38,7 @@ public class DataManagement implements Serializable {
             for(int i=0; i<this.allGames.size(); i++)
                 dataSavingStream.writeObject(this.allGames.get(i));
 
+            dataSavingStream.flush();
         } catch (FileNotFoundException e) {
             throw new ErrorGame("File 'gameData.txt' not found !");
         } catch (IOException e) {
@@ -84,6 +85,70 @@ public class DataManagement implements Serializable {
 
     public void addGame(Scanner scan) {
         this.allGames.add(new Game(scan));
+    }
+
+    public void launchGame(int index, Scanner scan) {
+        try {
+            this.allGames.get(index).gameHandling(scan);
+            this.allGames.remove(index);
+        } catch (ExitGame gameExit) {
+            int gameToRemove;
+            if(this.allGames.size() > 3){
+                gameToRemove = UserInterface.displayCurrentGame(this.allGames, scan);
+                if (gameToRemove==0) gameToRemove = 4;
+                gameToRemove--;
+                this.allGames.remove(gameToRemove);
+            }
+                
+        }
+    }
+
+    private void newGame(Scanner scan) {
+        addGame(scan);
+        launchGame(this.allGames.size() - 1, scan);
+    }
+
+    private void playSavedGame(Scanner scan) throws ErrorGame{
+        if (this.allGames.size() == 0)
+            throw new ErrorGame("No game in memory !");
+            
+        UserInterface.clearScreen();
+        UserInterface.displaySavedGame(this.allGames);
+        try {
+            this.allGames.get(UserInterface.menuChoice(scan, this.allGames.size(), "Select a game to play", "Please select a valid game !", false)-1).gameHandling(scan);
+        } catch (Exception wrongInput) {
+            UserInterface.printException(wrongInput.getMessage());
+        }
+        
+    }
+
+    public void menu(Scanner scan) {
+        boolean notExit = true;
+        while(notExit){
+            UserInterface.gameMenu();
+            try {
+                int choice = UserInterface.menuChoice(scan, 5, "Select an action to do", "Please select a valid option !", false);
+                switch (choice) {
+                    case 1:
+                        this.newGame(scan);
+                        break;
+                    case 2:
+                        this.playSavedGame(scan);
+                        break;
+                    case 3:
+                        this.loadGames();
+                        break;
+                    case 4:
+                        this.saveGames();
+                        break;
+                    case 5:
+                        notExit = false;
+                        break;
+                }
+            } catch (Exception wrongInput) {
+                UserInterface.printException(wrongInput.getMessage());
+            }
+        }
     }
 
     // TODO Launch selected game (with index)

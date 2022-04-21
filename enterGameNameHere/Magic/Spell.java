@@ -1,6 +1,6 @@
 package enterGameNameHere.Magic;
 
-public enum Spell {
+public enum Spell{
     Fire_1("Bomb",25,100,"fire"), Fire_2("Infernale Rush",35,80,"fire"), Fire_3("Blazing Arrow",45,70,"fire"),
     Fire_4("Flamme Torrent",55,60,"fire"), Fire_5("Fire surge",60,55,"fire"), Fire_6("Fire Wave",65,50,"fire"),
     Fire_7("Meteorite",75,40,"fire"), Fire_8("Inferno",85,25,"fire"), Fire_9("Explosion",95,10,"fire"),

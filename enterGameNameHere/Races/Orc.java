@@ -42,18 +42,11 @@ public class Orc extends Evil implements Physical {
         int temp;
         for (int i = 0 ; i < 3 ; i++){
             temp = rd.nextInt(7);
-            if (tempA.contains(temp)){
-                while(tempA.contains(temp)){
-                    temp = rd.nextInt(7);
-                }
-                tempA.add(temp);
-                spellOrc[i] = Physical.pspell[temp];
+            while(tempA.contains(temp)){
+                temp = rd.nextInt(7);
             }
-            else spellOrc[i] = Physical.pspell[temp];
-            if (i == 0){
-                tempA.add(temp);
-                spellOrc[i] = Physical.pspell[temp];
-            }
+            tempA.add(temp);
+            spellOrc[i] = Physical.pspell[temp];
         }
     }
 

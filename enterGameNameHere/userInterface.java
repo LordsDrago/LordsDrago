@@ -91,6 +91,7 @@ public class UserInterface {
     }
     
     public static void gameMenu(){
+        UserInterface.clearScreen();
         System.out.println("+-----------------------------+");
         System.out.println("|                             |");
         System.out.println("|         1.New game	      |");
@@ -100,21 +101,30 @@ public class UserInterface {
         System.out.println("|           5.Exit            |");
         System.out.println("|                             |");
         System.out.println("+-----------------------------+");
-
     }
 
-    public static void displayCurrentGame(ArrayList<Game> allGames){
+    public static int displayCurrentGame(ArrayList<Game> allGames, Scanner scan){
+        UserInterface.clearScreen();
         int temp = 0;
         for (int i = 0 ; i < allGames.size() ; i++){
             if (allGames.get(i).toString().length() > temp)
                 temp = allGames.get(i).toString().length();
         }
         winScreenBorderLine(temp+24);
-        System.out.println("Which game do you want to erase ?");
         System.out.print(">>> Your current game : ");
         allGames.get(allGames.size()-1).printGameInfo();
         displaySavedGame(allGames);
         winScreenBorderLine(temp+24);
+
+        boolean choiceNotMade = true;
+        int choice = 0;
+        while(choiceNotMade){
+            try {
+                choice = UserInterface.menuChoice(scan, allGames.size()-1, "Which game do you want to erase ? (to erase current game, write 0)", "Enter a valid choice", true);
+                choiceNotMade = false;
+            } catch (ErrorGame wrongChoice) {}
+        }
+        return choice;
     }
 
 
@@ -126,6 +136,18 @@ public class UserInterface {
             System.out.print(">>> Save "+(i+1)+" : ");
             allGames.get(i).printGameInfo();
         }
+    }
+
+    public static int menuChoice(Scanner scan, int upperLimit, String prompt, String errorMsg, boolean includeZero) throws ErrorGame {
+        String bottomLimit = "1";
+        if (includeZero)
+            bottomLimit = "0";
+        String lengthString = String.valueOf(upperLimit);
+        System.out.print("\n" + prompt + " \n>>> ");
+        String input = scan.nextLine();
+        if(input.compareTo(bottomLimit) < 0 || input.compareTo(lengthString) > 0 || input.length() > 1)
+            throw new ErrorGame(errorMsg);
+        return Integer.parseInt(input);
     }
 
 }

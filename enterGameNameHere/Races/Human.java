@@ -5,7 +5,7 @@ import java.util.Scanner;
 import enterGameNameHere.Physcial_Damage.Physical;
 import enterGameNameHere.Physcial_Damage.Pspell;
 
-public class Human extends Good implements Physical {
+public class Human extends Good implements Physical{
     public final Pspell spellHum[] = new Pspell[3];
     
     /**
@@ -55,18 +55,11 @@ public class Human extends Good implements Physical {
         int temp;
         for (int i = 0 ; i < 3 ; i++){
             temp = rd.nextInt(7);
-            if (tempA.contains(temp)){
-                while(tempA.contains(temp)){
-                    temp = rd.nextInt(7);
-                }
-                tempA.add(temp);
-                spellHum[i] = Physical.pspell[temp];
+            while(tempA.contains(temp)){
+                temp = rd.nextInt(7);
             }
-            else spellHum[i] = Physical.pspell[temp];
-            if (i == 0){
-                tempA.add(temp);
-                spellHum[i] = Physical.pspell[temp];
-            }
+            tempA.add(temp);
+            spellHum[i] = Physical.pspell[temp];
         }
     }
 

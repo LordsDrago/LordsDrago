@@ -42,18 +42,11 @@ public class Goblin extends Evil implements Magic {
         int temp;
         for (int i = 0 ; i < 3 ; i++){
             temp = rd.nextInt(27);
-            if (tempA.contains(temp)){
-                while(tempA.contains(temp)){
-                    temp = rd.nextInt(27);
-                }
-                tempA.add(temp);
-                spellGob[i] = Magic.spell[temp];
+            while(tempA.contains(temp)){
+                temp = rd.nextInt(27);
             }
-            else spellGob[i] = Magic.spell[temp];
-            if (i == 0){
-                tempA.add(temp);
-                spellGob[i] = Magic.spell[temp];
-            }
+            tempA.add(temp);
+            spellGob[i] = Magic.spell[temp];
         }
     }
     

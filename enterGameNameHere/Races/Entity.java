@@ -1,4 +1,5 @@
 package enterGameNameHere.Races;
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import enterGameNameHere.UserInterface;
 import enterGameNameHere.Terrain.*;
 
 
-public abstract class Entity {
+public abstract class Entity implements Serializable {
     protected String adjective;
     protected int strength;
     protected int maxHp;

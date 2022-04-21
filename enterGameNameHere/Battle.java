@@ -9,7 +9,7 @@ public class Battle {
     * @param ennemy
     * @param scan
     */ 
-    public Battle(Good player , Evil ennemy , Scanner sc ) throws ErrorGame{
+    public Battle(Good player , Evil ennemy , Scanner sc ) throws ErrorGame, ExitGame{
         int pSpell = 0 , eSpell = 0 ;
         boolean faster;
 
@@ -32,7 +32,7 @@ public class Battle {
             } catch (ErrorGame wrongSpellInput) {
                 UserInterface.printException(wrongSpellInput.getMessage());
             } catch (ExitGame gameExit) {
-                ennemy.attack(player, player.getHp());
+                throw new ExitGame();
             }
             
         }
