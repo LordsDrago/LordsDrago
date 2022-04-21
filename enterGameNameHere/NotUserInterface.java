@@ -3,7 +3,7 @@ package enterGameNameHere;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UserInterface {
+public class NotUserInterface {
 
     /**
      * 
@@ -31,7 +31,7 @@ public class UserInterface {
      * @return
      */
     public static String chooseRace(Scanner scan) throws ErrorGame{
-        UserInterface.clearScreen();
+        NotUserInterface.clearScreen();
         System.out.println("Choose a race to play (human/elf)");
         System.out.print(">>>");
         String input = scan.nextLine().toLowerCase();
@@ -57,23 +57,23 @@ public class UserInterface {
     }
 
     public static void printException(String exceptionMessage) {
-        UserInterface.clearScreen();
+        NotUserInterface.clearScreen();
         System.out.println(exceptionMessage);
-        UserInterface.wait(3);
+        NotUserInterface.wait(3);
     }
 
     public static void winScreen(String playerName) {
-        UserInterface.clearScreen();
+        NotUserInterface.clearScreen();
 
         int innerLength = playerName.length() + 39;
 
-        UserInterface.winScreenBorderLine(innerLength);
-        UserInterface.winScreenMiddleLine(innerLength);
+        NotUserInterface.winScreenBorderLine(innerLength);
+        NotUserInterface.winScreenMiddleLine(innerLength);
         
         System.out.println("|     Congratulations, " + playerName + ", you won !      |");
         
-        UserInterface.winScreenMiddleLine(innerLength);
-        UserInterface.winScreenBorderLine(innerLength);
+        NotUserInterface.winScreenMiddleLine(innerLength);
+        NotUserInterface.winScreenBorderLine(innerLength);
     }
 
     private static void winScreenBorderLine(int length) {
@@ -91,7 +91,7 @@ public class UserInterface {
     }
     
     public static void gameMenu(){
-        UserInterface.clearScreen();
+        NotUserInterface.clearScreen();
         System.out.println("+-----------------------------+");
         System.out.println("|                             |");
         System.out.println("|         1.New game	      |");
@@ -104,7 +104,7 @@ public class UserInterface {
     }
 
     public static int displayCurrentGame(ArrayList<Game> allGames, Scanner scan){
-        UserInterface.clearScreen();
+        NotUserInterface.clearScreen();
         int temp = 0;
         for (int i = 0 ; i < allGames.size() ; i++){
             if (allGames.get(i).toString().length() > temp)
@@ -120,7 +120,7 @@ public class UserInterface {
         int choice = 0;
         while(choiceNotMade){
             try {
-                choice = UserInterface.menuChoice(scan, allGames.size()-1, "Which game do you want to erase ? (to erase current game, write 0)", "Enter a valid choice", true);
+                choice = NotUserInterface.menuChoice(scan, allGames.size()-1, "Which game do you want to erase ? (to erase current game, write 0)", "Enter a valid choice", true);
                 choiceNotMade = false;
             } catch (ErrorGame wrongChoice) {}
         }
