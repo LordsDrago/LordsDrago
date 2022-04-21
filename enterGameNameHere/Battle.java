@@ -101,19 +101,19 @@ public class Battle {
     public void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster , int pDamage , int eDamage) throws ErrorGame{
         if (faster){
             player.attack(ennemy , addDamage((Entity)player, pSpell) * pDamage);
-            System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
+            System.out.println("Ennemy has lost "+ addDamage((Entity)player, pSpell) * pDamage + " hp");
             if (this.checkEnd(player.getHp(), ennemy.getHp()))
                 throw new ErrorGame("Battle ended !");
             ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
-            System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
+            System.out.println("You lost "+ addDamage((Entity)ennemy, eSpell) * eDamage + " hp");
         }
         else{
             ennemy.attack(player, addDamage((Entity)ennemy, eSpell) * eDamage);
-            System.out.println("You lost : "+ addDamage((Entity)ennemy, eSpell) * eDamage);
+            System.out.println("You lost "+ addDamage((Entity)ennemy, eSpell) * eDamage + " hp");
             if (this.checkEnd(player.getHp(), ennemy.getHp()))
                 throw new ErrorGame("Battle ended !");
             player.attack(ennemy ,addDamage((Entity)player, pSpell) * pDamage);
-            System.out.println("Ennemy has lost : "+ addDamage((Entity)player, pSpell) * pDamage);
+            System.out.println("Ennemy has lost "+ addDamage((Entity)player, pSpell) * pDamage + " hp");
         }
     }
 
@@ -126,11 +126,7 @@ public class Battle {
      * @return True if the player is faster and false if the ennemy is
      */
     public boolean isPlayerFaster(Good player , Evil ennemy , int pSpell , int eSpell) {
-        int pSpeed = player.getSpellSpeedAtPosition(pSpell);
-        int eSpeed = ennemy.getSpellSpeedAtPosition(eSpell);
-        
-        if (pSpeed > eSpeed) return true;
-        else return false;
+        return player.getSpellSpeedAtPosition(pSpell) > ennemy.getSpellSpeedAtPosition(eSpell);
     }
 
     /**
