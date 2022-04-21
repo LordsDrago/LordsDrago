@@ -57,11 +57,11 @@ public class Battle {
                 if (elementE.equals("water")) return 0;
                 if (elementE.equals("grass")) return 2;
             case "water":
-                if (elementE == "grass" ) return 0;
-                if (elementE == "fire"  ) return 2;
+                if (elementE.equals("grass")) return 0;
+                if (elementE.equals("fire")) return 2;
             case "grass":
-                if (elementE == "fire"  ) return 0;
-                if (elementE == "water" ) return 2;
+                if (elementE.equals("fire")) return 0;
+                if (elementE.equals("water")) return 2;
         }
         return -1;
     }

@@ -116,8 +116,6 @@ public class Game implements Serializable{
                 throw new ExitGame();
             }
 
-            this.checkAdvanceFloor();
-
             UserInterface.clearScreen();
             this.displayCurrentFloor();
 
@@ -128,6 +126,7 @@ public class Game implements Serializable{
             } catch (ExitGame playerExitsGame) {
                 throw new ExitGame();
             }
+            this.checkAdvanceFloor();
         }
         if(this.getFloorsLeft() == 0)
             UserInterface.winScreen(this.player.getName());

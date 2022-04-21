@@ -46,6 +46,7 @@ public class DataManagement implements Serializable {
         }
 
         System.out.println("Games saved successfully !");
+        UserInterface.wait(3);
     }
 
     /**
@@ -77,6 +78,8 @@ public class DataManagement implements Serializable {
         }
         
         this.allGames = games;
+        System.out.println("Games loaded successfully !");
+        UserInterface.wait(3);
     }
 
     public ArrayList<Game> getGames() {
@@ -114,9 +117,11 @@ public class DataManagement implements Serializable {
             
         UserInterface.clearScreen();
         UserInterface.displaySavedGame(this.allGames);
+        int choice; 
         try {
-            this.allGames.get(UserInterface.menuChoice(scan, this.allGames.size(), "Select a game to play", "Please select a valid game !", false)-1).gameHandling(scan);
-        } catch (Exception wrongInput) {
+            choice = UserInterface.menuChoice(scan, this.allGames.size(), "Select a game to play", "Please select a valid game !", false)-1;
+            launchGame(choice, scan);
+        } catch (ErrorGame wrongInput) {
             UserInterface.printException(wrongInput.getMessage());
         }
         

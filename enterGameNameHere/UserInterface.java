@@ -74,6 +74,8 @@ public class UserInterface {
         
         UserInterface.winScreenMiddleLine(innerLength);
         UserInterface.winScreenBorderLine(innerLength);
+
+        UserInterface.wait(3);
     }
 
     private static void winScreenBorderLine(int length) {
