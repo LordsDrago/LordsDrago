@@ -6,16 +6,10 @@ public class Main {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
 
-        DataManagement test = new DataManagement();
+        DataManagement game = new DataManagement();
         
-        test.menu(scan);
+        game.menu(scan);
         
-
-
-
-
-
-
         scan.close();
     }
 }
