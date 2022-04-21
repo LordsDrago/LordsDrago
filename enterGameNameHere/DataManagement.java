@@ -94,7 +94,7 @@ public class DataManagement implements Serializable {
         } catch (ExitGame gameExit) {
             int gameToRemove;
             if(this.allGames.size() > 3){
-                gameToRemove = UserInterface.displayCurrentGame(this.allGames, scan);
+                gameToRemove = NotUserInterface.displayCurrentGame(this.allGames, scan);
                 if (gameToRemove==0) gameToRemove = 4;
                 gameToRemove--;
                 this.allGames.remove(gameToRemove);
@@ -112,12 +112,12 @@ public class DataManagement implements Serializable {
         if (this.allGames.size() == 0)
             throw new ErrorGame("No game in memory !");
             
-        UserInterface.clearScreen();
-        UserInterface.displaySavedGame(this.allGames);
+        NotUserInterface.clearScreen();
+        NotUserInterface.displaySavedGame(this.allGames);
         try {
-            this.allGames.get(UserInterface.menuChoice(scan, this.allGames.size(), "Select a game to play", "Please select a valid game !", false)-1).gameHandling(scan);
+            this.allGames.get(NotUserInterface.menuChoice(scan, this.allGames.size(), "Select a game to play", "Please select a valid game !", false)-1).gameHandling(scan);
         } catch (Exception wrongInput) {
-            UserInterface.printException(wrongInput.getMessage());
+            NotUserInterface.printException(wrongInput.getMessage());
         }
         
     }
@@ -125,9 +125,9 @@ public class DataManagement implements Serializable {
     public void menu(Scanner scan) {
         boolean notExit = true;
         while(notExit){
-            UserInterface.gameMenu();
+            NotUserInterface.gameMenu();
             try {
-                int choice = UserInterface.menuChoice(scan, 5, "Select an action to do", "Please select a valid option !", false);
+                int choice = NotUserInterface.menuChoice(scan, 5, "Select an action to do", "Please select a valid option !", false);
                 switch (choice) {
                     case 1:
                         this.newGame(scan);
@@ -146,7 +146,7 @@ public class DataManagement implements Serializable {
                         break;
                 }
             } catch (Exception wrongInput) {
-                UserInterface.printException(wrongInput.getMessage());
+                NotUserInterface.printException(wrongInput.getMessage());
             }
         }
     }

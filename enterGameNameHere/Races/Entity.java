@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import enterGameNameHere.ErrorGame;
 import enterGameNameHere.ExitGame;
-import enterGameNameHere.UserInterface;
+import enterGameNameHere.NotUserInterface;
 import enterGameNameHere.Terrain.*;
 
 
@@ -104,7 +104,7 @@ public abstract class Entity implements Serializable {
     public void putMaxHp() {
       System.out.println("You have been healed and gained back all of your HP !");
       this.curHp = this.maxHp;
-      UserInterface.wait(3);
+      NotUserInterface.wait(3);
     }
 
     /**

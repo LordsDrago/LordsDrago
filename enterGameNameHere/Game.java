@@ -18,13 +18,13 @@ public class Game implements Serializable{
         boolean playerNotCreated = true;
         while(playerNotCreated)
             try {
-                if(UserInterface.chooseRace(scan).equals("human"))
+                if(NotUserInterface.chooseRace(scan).equals("human"))
                     this.player = new Human(scan);
                 else
                     this.player = new Elf(scan);
                 playerNotCreated = false;
                 } catch (ErrorGame wrongRaceInput) {
-                    UserInterface.printException(wrongRaceInput.getMessage());
+                    NotUserInterface.printException(wrongRaceInput.getMessage());
                 }
         
         this.curFloor = new Floor(player);
@@ -64,7 +64,7 @@ public class Game implements Serializable{
         try {
             this.curFloor.movePlayer(direction);
         } catch (ErrorGame cannotMoveToWall) {
-            UserInterface.printException(cannotMoveToWall.getMessage());
+            NotUserInterface.printException(cannotMoveToWall.getMessage());
         }
             
     }
@@ -118,19 +118,19 @@ public class Game implements Serializable{
 
             this.checkAdvanceFloor();
 
-            UserInterface.clearScreen();
+            NotUserInterface.clearScreen();
             this.displayCurrentFloor();
 
             try {
-                movePlayer(UserInterface.selectMove(scan));
+                movePlayer(NotUserInterface.selectMove(scan));
             } catch (ErrorGame wrongMoveInput) {
-                UserInterface.printException(wrongMoveInput.getMessage());
+                NotUserInterface.printException(wrongMoveInput.getMessage());
             } catch (ExitGame playerExitsGame) {
                 throw new ExitGame();
             }
         }
         if(this.getFloorsLeft() == 0)
-            UserInterface.winScreen(this.player.getName());
+            NotUserInterface.winScreen(this.player.getName());
     }
 
     /**
