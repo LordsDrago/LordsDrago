@@ -13,10 +13,10 @@ public class Battle {
         int pSpell = 0 , eSpell = 0 ;
         boolean faster;
 
-        NotUserInterface.printException("You are currently fighting a "+ennemy.getAdjective()+" "+ennemy.getClass().getSimpleName().toLowerCase()+" !"+"\n");
+        UserInterface.printException("You are currently fighting a "+ennemy.getAdjective()+" "+ennemy.getClass().getSimpleName().toLowerCase()+" !"+"\n");
         
         while (!this.checkEnd(player.getHp(), ennemy.getHp())){
-            NotUserInterface.clearScreen();
+            UserInterface.clearScreen();
 
             try {
                 eSpell = ennemy.spellChoice(sc);
@@ -28,9 +28,9 @@ public class Battle {
                 try {
                     round(player, ennemy, pSpell, eSpell, faster , isElement(player.getSpellElementAtPosition(pSpell), ennemy.getElement()) , isElement(ennemy.getSpellElementAtPosition(eSpell), player.getElement()));
                 } catch (ErrorGame battleEndedInMiddleOfRound) {} ;
-                NotUserInterface.wait(3);
+                UserInterface.wait(3);
             } catch (ErrorGame wrongSpellInput) {
-                NotUserInterface.printException(wrongSpellInput.getMessage());
+                UserInterface.printException(wrongSpellInput.getMessage());
             } catch (ExitGame gameExit) {
                 throw new ExitGame();
             }
@@ -84,7 +84,7 @@ public class Battle {
     public void battleEnd(int playerHp , int ennemyHp){
         if (playerHp > ennemyHp) System.out.println("You won");
         else System.out.println("You lost");
-        NotUserInterface.wait(2);
+        UserInterface.wait(2);
     }
 
     /**
