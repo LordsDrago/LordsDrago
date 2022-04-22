@@ -67,7 +67,7 @@ public class Battle {
     }
 
     /**
-     * Check if neither the player or ennemy has under 0 hp
+     * Check if either the player or ennemy has under 0 hp
      * @param playerHp
      * @param ennemyHp
      * @return True if either of them has under 0 hp
@@ -77,7 +77,7 @@ public class Battle {
     }
 
     /**
-     * Display if the player won or loose (comparing the player and ennemy hp)
+     * Display if the player won or lost (comparing the player and ennemy hp)
      * @param playerHp
      * @param ennemyHp
      */

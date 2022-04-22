@@ -38,7 +38,7 @@ public class Game implements Serializable{
     }
 
     /**
-     * Advances the game to the next floor, cannot exceed a value of 2, as there are only 3 floors
+     * Advances the game to the next floor
      */
     public void advanceFloor() {
         this.floorsLeft--;

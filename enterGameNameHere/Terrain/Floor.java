@@ -13,22 +13,14 @@ public class Floor implements Serializable {
     protected Evil[] monsters;
     protected Good player;
 
-
-    /**
-     * Floor constructor, creates a 2D array of Points which represents the map
-     * @param size the size of the map (always 15, as this constructor is private)
-     */
-    private Floor(int size, Good player){
-        this.player = player;
-        this.map = new Point[size + 2][size + 2];
-        initFloor(size + 2);
-    }
-
     /**
      * The default floor constructor, builds a 15*15 map as a 2D array of points
+     * @param player the player that will be playing the game
      */
     public Floor(Good player){
-        this(15, player);
+        this.player = player;
+        this.map = new Point[17][17];
+        initFloor(17);
     }
 
     /**
