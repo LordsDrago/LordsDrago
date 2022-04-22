@@ -26,7 +26,7 @@ public abstract class Good extends Entity {
      * Allow the user to set the name of the chosen character manually
      * @param scan
      */
-    public void setName(Scanner scan){
+    private void setName(Scanner scan){
         System.out.println("Please enter your name");
         System.out.print(">>>");
         this.name = scan.nextLine();

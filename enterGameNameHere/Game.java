@@ -33,14 +33,14 @@ public class Game implements Serializable{
     /**
      * Displays the current floor of the game
      */
-    public void displayCurrentFloor() {
+    private void displayCurrentFloor() {
         this.curFloor.displayFloor();
     }
 
     /**
      * Advances the game to the next floor
      */
-    public void advanceFloor() {
+    private void advanceFloor() {
         this.floorsLeft--;
         if(this.floorsLeft > 0){
             this.player.putMaxHp();
@@ -60,7 +60,7 @@ public class Game implements Serializable{
      * Executes the movePlayer method of the current floor
      * @param direction the String with the direction wanted by the player
      */
-    public void movePlayer(String direction) {
+    private void movePlayer(String direction) {
         try {
             this.curFloor.movePlayer(direction);
         } catch (ErrorGame cannotMoveToWall) {
@@ -72,7 +72,7 @@ public class Game implements Serializable{
     /**
      * Checks if the end of the floor is reached
      */
-    public void checkAdvanceFloor() {
+    private void checkAdvanceFloor() {
         if(this.curFloor.checkIsEnd())
             this.advanceFloor();
     }
@@ -82,7 +82,7 @@ public class Game implements Serializable{
      * @param scan the System.in scanner
      * @throws ErrorGame if the player loses, to signify the end of the game
      */
-    public void checkBattle(Scanner scan) throws ErrorGame, ExitGame {
+    private void checkBattle(Scanner scan) throws ErrorGame, ExitGame {
         if(this.curFloor.checkIsMonster()){
             Evil curMonster;
             for(Evil monster: this.curFloor.getMonsters())

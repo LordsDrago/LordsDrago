@@ -77,7 +77,7 @@ public abstract class Entity implements Serializable {
     /**
      * Sets the entities adjective randomly
      */
-    public void setAdjective(){
+    private void setAdjective(){
         Random rd = new Random();
         this.adjective = adjectiveList[rd.nextInt(12)].getAdjective();
     }

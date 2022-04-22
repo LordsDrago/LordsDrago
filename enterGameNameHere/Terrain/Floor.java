@@ -281,7 +281,7 @@ public class Floor implements Serializable {
      * Method which generates all the monsters to be contained on one floor
      * @param ratio the percentage of free points that will contain a monster
      */
-    public void setMonsters(double ratio) { // ratio --> between 0 and 1
+    private void setMonsters(double ratio) { // ratio --> between 0 and 1
         Random rd = new Random();
         double approachedMonsterNumber = this.getFreePoints() * ratio;
         int monsterNumber = (int) approachedMonsterNumber;
@@ -296,7 +296,7 @@ public class Floor implements Serializable {
     /**
      * Takes the array of monsters and places them on the floor, by toggling the isMonster property of the point and setting the position of the monster
      */
-    public void placeMonsters() {
+    private void placeMonsters() {
         Random rd = new Random();
         Point temp;
         for(Evil monster: this.monsters){

@@ -49,7 +49,7 @@ public class Battle {
      * @param elementE
      * @return 0 , 1 or 2
      */
-    public static int isElement(String elementP , String elementE){
+    private static int isElement(String elementP , String elementE){
         if (elementP.equals(elementE) || elementP.equals("physical") || elementE.equals("physical")) 
             return 1;
         switch(elementP){
@@ -72,7 +72,7 @@ public class Battle {
      * @param ennemyHp
      * @return True if either of them has under 0 hp
      */
-    public boolean checkEnd(int playerHp , int ennemyHp){
+    private boolean checkEnd(int playerHp , int ennemyHp){
         return playerHp <= 0 || ennemyHp <= 0 ;
     }
 
@@ -81,7 +81,7 @@ public class Battle {
      * @param playerHp
      * @param ennemyHp
      */
-    public void battleEnd(int playerHp , int ennemyHp){
+    private void battleEnd(int playerHp , int ennemyHp){
         if (playerHp > ennemyHp) System.out.println("You won");
         else System.out.println("You lost");
         UserInterface.wait(2);
@@ -98,7 +98,7 @@ public class Battle {
      * @param eDamage
      * @throws ErrorGame
      */
-    public void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster , int pDamage , int eDamage) throws ErrorGame{
+    private void round (Good player , Evil ennemy , int pSpell , int eSpell , boolean faster , int pDamage , int eDamage) throws ErrorGame{
         if (faster){
             player.attack(ennemy , addDamage((Entity)player, pSpell) * pDamage);
             System.out.println("Ennemy has lost "+ addDamage((Entity)player, pSpell) * pDamage + " hp");
@@ -125,7 +125,7 @@ public class Battle {
      * @param eSpell
      * @return True if the player is faster and false if the ennemy is
      */
-    public boolean isPlayerFaster(Good player , Evil ennemy , int pSpell , int eSpell) {
+    private boolean isPlayerFaster(Good player , Evil ennemy , int pSpell , int eSpell) {
         return player.getSpellSpeedAtPosition(pSpell) > ennemy.getSpellSpeedAtPosition(eSpell);
     }
 
@@ -135,7 +135,7 @@ public class Battle {
      * @param spell
      * @return The value of the spell damage
      */
-    public int addDamage(Entity character , int spell){
+    private int addDamage(Entity character , int spell){
           return character.getSpellDamageAtPosition(spell);
     }
 }
