@@ -10,7 +10,7 @@ public class Human extends Good implements Physical{
     public Pspell spellHum[] = new Pspell[3];
     
     /**
-     * Constructor , allows to create an human and gets random spells
+     * Constructor that creates a human and attributes spells randomly
      * @param scan
      */
     public Human(Scanner scan){

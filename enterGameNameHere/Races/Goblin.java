@@ -9,7 +9,7 @@ public class Goblin extends Evil implements Magic {
     private Spell spellGob[] = new Spell[3];
 
     /** 
-     * Constructor, create a goblin and attribute spells randomly
+     * Constructor that creates a goblin and attributes spells randomly
      */
     public Goblin(){
         super();
