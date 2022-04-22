@@ -21,7 +21,7 @@ public class DataManagement implements Serializable {
      * @param games the ArrayList of games to be saved, in a limit of 3 games
      * @throws ErrorGame if the save is not successful, for various reasons
      */
-    public void saveGames() throws ErrorGame{
+    private void saveGames() throws ErrorGame{
         File dataFile = new File(".\\gameData.txt");
 
         try {
@@ -54,7 +54,7 @@ public class DataManagement implements Serializable {
      * @return the games load in an ArrayList
      * @throws ErrorGame if the load is not successful, for various reasons
      */
-    public void loadGames() throws ErrorGame{
+    private void loadGames() throws ErrorGame{
         ArrayList<Game> games = new ArrayList<>();
         File dataFile = new File(".\\gameData.txt");
 
@@ -82,15 +82,20 @@ public class DataManagement implements Serializable {
         UserInterface.wait(3);
     }
 
-    public ArrayList<Game> getGames() {
-        return this.allGames;
-    }
-
-    public void addGame(Scanner scan) {
+    /**
+     * Adds a game the ArrayList of Games
+     * @param scan the System.in scanner
+     */
+    private void addGame(Scanner scan) {
         this.allGames.add(new Game(scan));
     }
 
-    public void launchGame(int index, Scanner scan) {
+    /**
+     * Launches a game and handles the event that happens at either the end or the exit of the game
+     * @param index the position of the game in the temporary memory (ArrayList of Games)
+     * @param scan the System.in scanner
+     */
+    private void launchGame(int index, Scanner scan) {
         try {
             this.allGames.get(index).gameHandling(scan);
             this.allGames.remove(index);
@@ -106,11 +111,20 @@ public class DataManagement implements Serializable {
         }
     }
 
+    /**
+     * Creates a new game and launches it
+     * @param scan the System.in scanner
+     */
     private void newGame(Scanner scan) {
         addGame(scan);
         launchGame(this.allGames.size() - 1, scan);
     }
 
+    /**
+     * Takes an index to play the selected saved game from the temporary memory
+     * @param scan the System.in scanner
+     * @throws ErrorGame if the game selected is wrong
+     */
     private void playSavedGame(Scanner scan) throws ErrorGame{
         if (this.allGames.size() == 0)
             throw new ErrorGame("No game in memory !");
@@ -127,6 +141,10 @@ public class DataManagement implements Serializable {
         
     }
 
+    /**
+     * The game menu, which allows every feature to be accessed from there
+     * @param scan the System.in scanner
+     */
     public void menu(Scanner scan) {
         boolean notExit = true;
         while(notExit){
@@ -155,7 +173,4 @@ public class DataManagement implements Serializable {
             }
         }
     }
-
-    // TODO Launch selected game (with index)
-    // TODO when game ends, see if game is added to saved data
 }

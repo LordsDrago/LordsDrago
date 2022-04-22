@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class UserInterface {
 
     /**
-     * 
-     * @param scan
-     * @return
+     * Prints the prompt to select a move to the user
+     * @param scan the System.in scanner
+     * @return the move selected by the user in a String ("z"/"q"/"s"/"d")
      */
     public static String selectMove(Scanner scan) throws ErrorGame, ExitGame {
         System.out.println("Choose a direction to move to (up = z/down = s/right = d/left = q)");
@@ -26,9 +26,9 @@ public class UserInterface {
     }
 
     /**
-     * 
-     * @param scan
-     * @return
+     * Prints the prompt to select a race to the user
+     * @param scan the System.in scanner
+     * @return the race chosen in a String ("elf"/"human")
      */
     public static String chooseRace(Scanner scan) throws ErrorGame{
         UserInterface.clearScreen();
@@ -50,18 +50,30 @@ public class UserInterface {
         System.out.flush();
     } 
 
+    /**
+     * Waits for the time given as parameter
+     * @param seconds the number of seconds to wait
+     */
     public static void wait(int seconds) {
         try {
             Thread.sleep(seconds * 1000);
         } catch (Exception e) {}
     }
 
+    /**
+     * Formats the way an exception is printed on the screen
+     * @param exceptionMessage the error message to be printed on the screen
+     */
     public static void printException(String exceptionMessage) {
         UserInterface.clearScreen();
         System.out.println(exceptionMessage);
         UserInterface.wait(3);
     }
 
+    /**
+     * Prints the winning screen
+     * @param playerName the name given to the player
+     */
     public static void winScreen(String playerName) {
         UserInterface.clearScreen();
 
@@ -78,6 +90,10 @@ public class UserInterface {
         UserInterface.wait(3);
     }
 
+    /**
+     * Formats the first and last layers of the winning screen
+     * @param length the length of the message that will be inside the borders
+     */
     private static void winScreenBorderLine(int length) {
         System.out.print("+");
         for(int i=0; i<length; i++)
@@ -85,6 +101,10 @@ public class UserInterface {
         System.out.println("+");
     }
 
+    /**
+     * Formats the second and second to last layers of the winning screen
+     * @param length the length of the message that will be inside the borders
+     */
     private static void winScreenMiddleLine(int length) {
         System.out.print("|");
         for(int i=0; i<length; i++)
@@ -92,6 +112,9 @@ public class UserInterface {
         System.out.println("|");
     }
     
+    /**
+     * Prints the main menu of the game
+     */
     public static void gameMenu(){
         UserInterface.clearScreen();
         System.out.println("+-----------------------------+");
@@ -105,6 +128,12 @@ public class UserInterface {
         System.out.println("+-----------------------------+");
     }
 
+    /**
+     * Displays all the current games and prompts the user to choose a game to delete from them
+     * @param allGames the ArrayList of games
+     * @param scan the System.in scanner
+     * @return the choice of the user for the game to be deleted
+     */
     public static int displayCurrentGame(ArrayList<Game> allGames, Scanner scan){
         UserInterface.clearScreen();
         int temp = 0;
@@ -129,8 +158,10 @@ public class UserInterface {
         return choice;
     }
 
-
-
+    /**
+     * Displays the first three games contained in the given ArrayList of Games
+     * @param allGames the ArrayList of Games stored in the temporary memory
+     */
     public static void displaySavedGame(ArrayList<Game> allGames){
         int temp = allGames.size();
         if (temp == 4) temp = 3;
@@ -140,6 +171,16 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Asks the user to input a one-digit number to answer to the given prompt
+     * @param scan the System.in scanner
+     * @param upperLimit the upper limit of the choices available (cannot exceed 9)
+     * @param prompt the String that will be displayed to ask the user to input a value
+     * @param errorMsg the String that will be returned in the error when the input is wrong
+     * @param includeZero a boolean, true if zero is a valid possibility, false if not
+     * @return the int entered by the user
+     * @throws ErrorGame if the input is wrong
+     */
     public static int menuChoice(Scanner scan, int upperLimit, String prompt, String errorMsg, boolean includeZero) throws ErrorGame {
         String bottomLimit = "1";
         if (includeZero)
@@ -153,16 +194,3 @@ public class UserInterface {
     }
 
 }
-
-/*
-STATIC MENU
-New game
-Play a saved game
-Load games
-Save games
-Exit
-------------------------------
-display games in ArrayList
---> when exiting current game (0 / 1 / 2 / 3)
---> when choosing a game to play (1 / 2 / 3)
-*/
