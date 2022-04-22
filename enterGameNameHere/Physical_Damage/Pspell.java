@@ -1,25 +1,25 @@
-package enterGameNameHere.Physcial_Damage;
+package enterGameNameHere.Physical_Damage;
 
 public enum Pspell {
-    phys_1("Slam",45,100,"physical"),phys_2("Swift Strike",50,85,"physical"),phys_3("Slash",60,70,"physical"),
-    phys_4("Slant",68,65,"physical"),phys_5("Slashing ray",75,50,"physical"),phys_6("Whiriwind", 85,40,"physical"),
-    phys_7("Nova Ascension",150,5,"physical");
+    PHYS_1("Slam",45,100,"physical"),PHYS_2("Swift Strike",50,85,"physical"),PHYS_3("Slash",60,70,"physical"),
+    PHYS_4("Slant",68,65,"physical"),PHYS_5("Slashing ray",75,50,"physical"),PHYS_6("Whiriwind", 85,40,"physical"),
+    PHYS_7("Nova Ascension",150,5,"physical");
 
     private final String PspellName;
-    private final int ap;
+    private final int attackPower;
     private final int speed;
     private final String element;
 
     /**
      * Constructor for a physical spell
      * @param PspellName
-     * @param ap
+     * @param attackPower
      * @param speed
      * @param element
      */
-    private Pspell(String PspellName , int ap , int speed , String element){
+    private Pspell(String PspellName , int attackPower , int speed , String element){
         this.PspellName = PspellName;
-        this.ap = ap;
+        this.attackPower = attackPower;
         this.speed = speed;
         this.element = element;
     }
@@ -34,10 +34,10 @@ public enum Pspell {
 
     /**
      * Getting the attack power of the physical spell
-     * @return An int ap
+     * @return An int attackPower
      */
     public int getAp(){
-        return this.ap;
+        return this.attackPower;
     }
 
     /**

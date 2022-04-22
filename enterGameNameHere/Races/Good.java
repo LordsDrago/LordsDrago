@@ -23,7 +23,7 @@ public abstract class Good extends Entity {
     }
 
     /**
-     * Allow the user to set the name of the choosen character manually
+     * Allow the user to set the name of the chosen character manually
      * @param scan
      */
     public void setName(Scanner scan){

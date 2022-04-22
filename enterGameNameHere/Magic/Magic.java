@@ -2,7 +2,7 @@ package enterGameNameHere.Magic;
 
 
 public interface Magic {
-    public final Spell[] spell = {Spell.Fire_1,Spell.Fire_2,Spell.Fire_3,Spell.Fire_4,Spell.Fire_5,Spell.Fire_6,Spell.Fire_7,Spell.Fire_8,Spell.Fire_9,Spell.Water_1,Spell.Water_2,Spell.Water_3,Spell.Water_4,Spell.Water_5,Spell.Water_6,Spell.Water_7,Spell.Water_8,Spell.Water_9,Spell.Grass_1,Spell.Grass_2,Spell.Grass_3,Spell.Grass_4,Spell.Grass_5,Spell.Grass_6,Spell.Grass_7,Spell.Grass_8,Spell.Grass_9};
+    public static final Spell[] spell = {Spell.FIRE_1,Spell.FIRE_2,Spell.FIRE_3,Spell.FIRE_4,Spell.FIRE_5,Spell.FIRE_6,Spell.FIRE_7,Spell.FIRE_8,Spell.FIRE_9,Spell.WATER_1,Spell.WATER_2,Spell.WATER_3,Spell.WATER_4,Spell.WATER_5,Spell.WATER_6,Spell.WATER_7,Spell.WATER_8,Spell.WATER_9,Spell.GRASS_1,Spell.GRASS_2,Spell.GRASS_3,Spell.GRASS_4,Spell.GRASS_5,Spell.GRASS_6,Spell.GRASS_7,Spell.GRASS_8,Spell.GRASS_9};
     /** 
      * Method to get spell for goblin and elf
      */

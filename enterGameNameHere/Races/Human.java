@@ -2,18 +2,16 @@ package enterGameNameHere.Races;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import enterGameNameHere.Physcial_Damage.Physical;
-import enterGameNameHere.Physcial_Damage.Pspell;
+
+import enterGameNameHere.Physical_Damage.Physical;
+import enterGameNameHere.Physical_Damage.Pspell;
 
 public class Human extends Good implements Physical{
-    public final Pspell spellHum[] = new Pspell[3];
+    public Pspell spellHum[] = new Pspell[3];
     
     /**
-     * Construcor , allow to create an human and getting randomly spells
-     * @param specie
-     * @param name
-     * @param strength
-     * @param element
+     * Constructor , allows to create an human and gets random spells
+     * @param scan
      */
     public Human(Scanner scan){
         super(scan);
@@ -51,15 +49,15 @@ public class Human extends Good implements Physical{
     @Override
     public void getPspell(){
         Random rd = new Random();
-        ArrayList<Integer> tempA = new ArrayList<>();
+        ArrayList<Integer> tempArray = new ArrayList<>();
         int temp;
         for (int i = 0 ; i < 3 ; i++){
             temp = rd.nextInt(7);
-            while(tempA.contains(temp)){
+            while(tempArray.contains(temp)){
                 temp = rd.nextInt(7);
             }
-            tempA.add(temp);
-            spellHum[i] = Physical.pspell[temp];
+            tempArray.add(temp);
+            spellHum[i] = Physical.pSpell[temp];
         }
     }
 

@@ -5,8 +5,8 @@ import enterGameNameHere.Magic.Magic;
 import enterGameNameHere.Magic.Spell;
 
 public class Goblin extends Evil implements Magic {
-    public final static String elementList[] = {"fire","water","grass"};
-    public final Spell spellGob[] = new Spell[3];
+    private final static String elementList[] = {"fire","water","grass"};
+    private Spell spellGob[] = new Spell[3];
 
     /** 
      * Constructor, create a goblin and attribute spells randomly
@@ -38,14 +38,14 @@ public class Goblin extends Evil implements Magic {
     @Override
     public void getSpell(){
         Random rd = new Random();
-        ArrayList<Integer> tempA = new ArrayList<>();
+        ArrayList<Integer> tempArray = new ArrayList<>();
         int temp;
         for (int i = 0 ; i < 3 ; i++){
             temp = rd.nextInt(27);
-            while(tempA.contains(temp)){
+            while(tempArray.contains(temp)){
                 temp = rd.nextInt(27);
             }
-            tempA.add(temp);
+            tempArray.add(temp);
             spellGob[i] = Magic.spell[temp];
         }
     }

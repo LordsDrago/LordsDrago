@@ -15,7 +15,7 @@ public abstract class Entity implements Serializable {
     protected int maxHp;
     protected int curHp;
     protected Point position;
-    protected String element; // Ceci est un humain de type FEU allez sur le lien : https://github.com/LordsDrago/Projet-Advanced-Prog
+    protected String element;
     private final static Adjective[] adjectiveList = {Adjective.BLOODTHIRSTY, Adjective.BRAVE, Adjective.COURAGEOUS, Adjective.DRUNK, Adjective.FABULOUS, Adjective.FAYAD, Adjective.FLATEARTHER, Adjective.HIDEOUS, Adjective.HORRIBLE, Adjective.INSANE, Adjective.SHAMEFUL, Adjective.TERRIFIC};
 
     /**
@@ -83,8 +83,8 @@ public abstract class Entity implements Serializable {
     }
 
     /**
-    * Give the current species name
-    * @return The current species name
+    * Give the adjective of the entity
+    * @return The adjective of the entity
     */
     public String getAdjective(){
         return this.adjective;
@@ -124,8 +124,8 @@ public abstract class Entity implements Serializable {
     }
 
     /**
-    * Getting the position of the new
-    * @return
+    * Getting the position of the entity
+    * @return A Point with the position of the entity
     */
     public Point getPoint(){
         return this.position;

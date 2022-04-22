@@ -3,14 +3,14 @@ package enterGameNameHere.Races;
 import java.util.ArrayList;
 import java.util.Random;
 
-import enterGameNameHere.Physcial_Damage.Physical;
-import enterGameNameHere.Physcial_Damage.Pspell;
+import enterGameNameHere.Physical_Damage.Physical;
+import enterGameNameHere.Physical_Damage.Pspell;
 
 public class Orc extends Evil implements Physical {
-    public final Pspell spellOrc[] = new Pspell[3];
+    public Pspell spellOrc[] = new Pspell[3];
 
     /**
-     * Constructor, allow to create an Orc and giving randomly spells
+     * Constructor, allow to create an Orc and give random spells
      */
     public Orc(){
         super();
@@ -38,15 +38,15 @@ public class Orc extends Evil implements Physical {
     @Override
     public void getPspell(){
         Random rd = new Random();
-        ArrayList<Integer> tempA = new ArrayList<>();
+        ArrayList<Integer> tempArray = new ArrayList<>();
         int temp;
         for (int i = 0 ; i < 3 ; i++){
             temp = rd.nextInt(7);
-            while(tempA.contains(temp)){
+            while(tempArray.contains(temp)){
                 temp = rd.nextInt(7);
             }
-            tempA.add(temp);
-            spellOrc[i] = Physical.pspell[temp];
+            tempArray.add(temp);
+            spellOrc[i] = Physical.pSpell[temp];
         }
     }
 

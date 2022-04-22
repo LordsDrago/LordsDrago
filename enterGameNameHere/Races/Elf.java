@@ -7,7 +7,7 @@ import enterGameNameHere.Magic.Spell;
 
 public class Elf extends Good implements Magic {
     public final static String elementList[] = {"fire","water","grass"};
-    public final Spell spellElf[] = new Spell[3];
+    private Spell spellElf[] = new Spell[3];
 
     /**
      * Constructor for an elf, it create an entity elf and attribute spells randomly
@@ -50,14 +50,14 @@ public class Elf extends Good implements Magic {
     @Override
     public void getSpell(){
         Random rd = new Random();
-        ArrayList<Integer> tempA = new ArrayList<>();
+        ArrayList<Integer> tempArray = new ArrayList<>();
         int temp;
         for (int i = 0 ; i < 3 ; i++){
             temp = rd.nextInt(27);
-            while(tempA.contains(temp)){
+            while(tempArray.contains(temp)){
                 temp = rd.nextInt(27);
             }
-            tempA.add(temp);
+            tempArray.add(temp);
             spellElf[i] = Magic.spell[temp];
         }
     }
