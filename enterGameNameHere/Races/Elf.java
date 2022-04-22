@@ -10,7 +10,7 @@ public class Elf extends Good implements Magic {
     private Spell spellElf[] = new Spell[3];
 
     /**
-     * Constructor for an elf, it create an entity elf and attribute spells randomly
+     * Constructor that creates an elf and attributes spells randomly
      * @param scan
      */
     public Elf(Scanner scan){

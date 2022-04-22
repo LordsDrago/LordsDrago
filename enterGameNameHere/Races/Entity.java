@@ -148,5 +148,4 @@ public abstract class Entity implements Serializable {
     public void attack(Entity ennemy , int damage){
         ennemy.curHp -= damage;  
     }
-
 }

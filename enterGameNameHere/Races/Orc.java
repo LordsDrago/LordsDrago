@@ -10,7 +10,7 @@ public class Orc extends Evil implements Physical {
     public Pspell spellOrc[] = new Pspell[3];
 
     /**
-     * Constructor, allow to create an Orc and give random spells
+     * Constructor that creates an orc and attributes spells randomly
      */
     public Orc(){
         super();
