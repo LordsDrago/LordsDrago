@@ -4,10 +4,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 import enterGameNameHere.Physical_Damage.Physical;
-import enterGameNameHere.Physical_Damage.Pspell;
+import enterGameNameHere.Physical_Damage.PSpell;
 
 public class Human extends Good implements Physical{
-    public Pspell spellHum[] = new Pspell[3];
+    public PSpell spellHum[] = new PSpell[3];
     
     /**
      * Constructor that creates a human and attributes spells randomly
@@ -57,7 +57,7 @@ public class Human extends Good implements Physical{
                 temp = rd.nextInt(7);
             }
             tempArray.add(temp);
-            spellHum[i] = Physical.pSpell[temp];
+            spellHum[i] = Physical.spells[temp];
         }
     }
 
@@ -70,7 +70,7 @@ public class Human extends Good implements Physical{
     public void spellDisplay(){
         System.out.println("Your current spell are :\n");
         for (int i = 0 ; i < 3 ; i++){
-            System.out.println((i+1) + ": " + this.spellHum[i].getPspellName()+ " [Attack power: " + this.spellHum[i].getAp() + " | " + "Speed: " + this.spellHum[i].getSpeed() + " | " + "Element: " + this.spellHum[i].getElement() + "]");
+            System.out.println((i+1) + ": " + this.spellHum[i].getPSpellName()+ " [Attack power: " + this.spellHum[i].getAp() + " | " + "Speed: " + this.spellHum[i].getSpeed() + " | " + "Element: " + this.spellHum[i].getElement() + "]");
         }
         System.out.println("");
     }

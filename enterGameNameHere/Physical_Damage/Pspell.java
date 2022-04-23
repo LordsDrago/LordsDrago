@@ -1,24 +1,24 @@
 package enterGameNameHere.Physical_Damage;
 
-public enum Pspell {
+public enum PSpell {
     PHYS_1("Slam",45,100,"physical"),PHYS_2("Swift Strike",50,85,"physical"),PHYS_3("Slash",60,70,"physical"),
     PHYS_4("Slant",68,65,"physical"),PHYS_5("Slashing ray",75,50,"physical"),PHYS_6("Whiriwind", 85,40,"physical"),
     PHYS_7("Nova Ascension",150,5,"physical");
 
-    private final String PspellName;
+    private final String pSpellName;
     private final int attackPower;
     private final int speed;
     private final String element;
 
     /**
      * Constructor for a physical spell
-     * @param PspellName
+     * @param pSpellName
      * @param attackPower
      * @param speed
      * @param element
      */
-    private Pspell(String PspellName , int attackPower , int speed , String element){
-        this.PspellName = PspellName;
+    private PSpell(String pSpellName , int attackPower , int speed , String element){
+        this.pSpellName = pSpellName;
         this.attackPower = attackPower;
         this.speed = speed;
         this.element = element;
@@ -26,10 +26,10 @@ public enum Pspell {
 
     /**
      * Getting the name of the physical spell
-     * @return A string PspellName
+     * @return A string pSpellName
      */
-    public String getPspellName(){
-        return this.PspellName;
+    public String getPSpellName(){
+        return this.pSpellName;
     }
 
     /**

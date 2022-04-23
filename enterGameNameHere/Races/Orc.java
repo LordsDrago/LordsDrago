@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import enterGameNameHere.Physical_Damage.Physical;
-import enterGameNameHere.Physical_Damage.Pspell;
+import enterGameNameHere.Physical_Damage.PSpell;
 
 public class Orc extends Evil implements Physical {
-    public Pspell spellOrc[] = new Pspell[3];
+    public PSpell spellOrc[] = new PSpell[3];
 
     /**
      * Constructor that creates an orc and attributes spells randomly
@@ -46,7 +46,7 @@ public class Orc extends Evil implements Physical {
                 temp = rd.nextInt(7);
             }
             tempArray.add(temp);
-            spellOrc[i] = Physical.pSpell[temp];
+            spellOrc[i] = Physical.spells[temp];
         }
     }
 
