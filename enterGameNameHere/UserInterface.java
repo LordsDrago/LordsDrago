@@ -112,7 +112,7 @@ public class UserInterface {
         System.out.println("|");
     }
     
-    /**
+    /**by typing 'exit'|
      * Prints the main menu of the game
      */
     public static void gameMenu(){
@@ -124,6 +124,10 @@ public class UserInterface {
         System.out.println("|         3.Load games        |");
         System.out.println("|         4.Save games        |");
         System.out.println("|           5.Exit            |");
+        System.out.println("|                             |");
+        System.out.println("|   (You can exit the game    |");
+        System.out.println("|        at any moment        |");
+        System.out.println("|       by typing 'exit')     |");
         System.out.println("|                             |");
         System.out.println("+-----------------------------+");
     }
