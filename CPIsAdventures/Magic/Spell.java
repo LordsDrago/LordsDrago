@@ -1,4 +1,4 @@
-package enterGameNameHere.Magic;
+package CPIsAdventures.Magic;
 
 public enum Spell{
     FIRE_1("Bomb",25,100,"fire"), FIRE_2("Infernale Rush",35,80,"fire"), FIRE_3("Blazing Arrow",45,70,"fire"),

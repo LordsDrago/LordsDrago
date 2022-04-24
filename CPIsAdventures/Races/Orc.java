@@ -1,10 +1,10 @@
-package enterGameNameHere.Races;
+package CPIsAdventures.Races;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import enterGameNameHere.Physical_Damage.PSpell;
-import enterGameNameHere.Physical_Damage.Physical;
+import CPIsAdventures.Physical_Damage.PSpell;
+import CPIsAdventures.Physical_Damage.Physical;
 
 public class Orc extends Evil implements Physical {
     public PSpell spellOrc[] = new PSpell[3];

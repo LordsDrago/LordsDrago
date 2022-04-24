@@ -1,4 +1,4 @@
-package enterGameNameHere.Physical_Damage;
+package CPIsAdventures.Physical_Damage;
 
 public enum PSpell {
     PHYS_1("Slam",45,100,"physical"),PHYS_2("Swift Strike",50,85,"physical"),PHYS_3("Slash",60,70,"physical"),

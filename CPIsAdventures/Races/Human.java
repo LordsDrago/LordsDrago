@@ -1,10 +1,10 @@
-package enterGameNameHere.Races;
+package CPIsAdventures.Races;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import enterGameNameHere.Physical_Damage.Physical;
-import enterGameNameHere.Physical_Damage.PSpell;
+import CPIsAdventures.Physical_Damage.PSpell;
+import CPIsAdventures.Physical_Damage.Physical;
 
 public class Human extends Good implements Physical{
     public PSpell spellHum[] = new PSpell[3];

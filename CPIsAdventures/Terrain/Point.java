@@ -1,4 +1,4 @@
-package enterGameNameHere.Terrain;
+package CPIsAdventures.Terrain;
 
 import java.io.Serializable;
 

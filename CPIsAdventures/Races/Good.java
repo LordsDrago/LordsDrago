@@ -1,9 +1,9 @@
-package enterGameNameHere.Races;
+package CPIsAdventures.Races;
 
 import java.util.Scanner;
 
-import enterGameNameHere.ErrorGame;
-import enterGameNameHere.ExitGame;
+import CPIsAdventures.ErrorGame;
+import CPIsAdventures.ExitGame;
 
 public abstract class Good extends Entity {
     protected String name;

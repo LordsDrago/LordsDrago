@@ -1,4 +1,4 @@
-package enterGameNameHere;
+package CPIsAdventures;
 
 import java.util.ArrayList;
 import java.util.Scanner;

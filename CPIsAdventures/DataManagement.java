@@ -1,4 +1,4 @@
-package enterGameNameHere;
+package CPIsAdventures;
 
 import java.io.EOFException;
 import java.io.File;

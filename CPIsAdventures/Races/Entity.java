@@ -1,12 +1,12 @@
-package enterGameNameHere.Races;
+package CPIsAdventures.Races;
 import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-import enterGameNameHere.ErrorGame;
-import enterGameNameHere.ExitGame;
-import enterGameNameHere.UserInterface;
-import enterGameNameHere.Terrain.*;
+import CPIsAdventures.ErrorGame;
+import CPIsAdventures.ExitGame;
+import CPIsAdventures.UserInterface;
+import CPIsAdventures.Terrain.*;
 
 
 public abstract class Entity implements Serializable {

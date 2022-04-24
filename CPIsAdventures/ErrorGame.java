@@ -1,4 +1,4 @@
-package enterGameNameHere;
+package CPIsAdventures;
 
 public class ErrorGame extends Exception {
     

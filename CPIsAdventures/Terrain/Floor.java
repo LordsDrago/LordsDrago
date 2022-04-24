@@ -1,10 +1,10 @@
-package enterGameNameHere.Terrain;
-
-import enterGameNameHere.ErrorGame;
-import enterGameNameHere.Races.*;
+package CPIsAdventures.Terrain;
 
 import java.io.Serializable;
 import java.util.Random;
+
+import CPIsAdventures.ErrorGame;
+import CPIsAdventures.Races.*;
 
 public class Floor implements Serializable {
     protected static final Maps[] mapList = {Maps.MAP1, Maps.MAP2, Maps.MAP3, Maps.MAP4, Maps.MAP5, Maps.MAP6, Maps.MAP7, Maps.MAP8, Maps.MAP9, Maps.MAP10};

@@ -1,4 +1,4 @@
-package enterGameNameHere.Races;
+package CPIsAdventures.Races;
 
 public enum Adjective {
     FABULOUS("fabulous") , COURAGEOUS("courageous") , TERRIFIC("terrific"),

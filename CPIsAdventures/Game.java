@@ -1,10 +1,10 @@
-package enterGameNameHere;
+package CPIsAdventures;
 
 import java.io.Serializable;
 import java.util.Scanner;
 
-import enterGameNameHere.Races.*;
-import enterGameNameHere.Terrain.Floor;
+import CPIsAdventures.Races.*;
+import CPIsAdventures.Terrain.Floor;
 
 public class Game implements Serializable{
     protected Floor curFloor;

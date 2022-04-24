@@ -1,4 +1,4 @@
-package enterGameNameHere.Races;
+package CPIsAdventures.Races;
 
 import java.util.Random;
 import java.util.Scanner;

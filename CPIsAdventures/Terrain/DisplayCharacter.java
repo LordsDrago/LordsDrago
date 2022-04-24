@@ -1,4 +1,4 @@
-package enterGameNameHere.Terrain;
+package CPIsAdventures.Terrain;
 
 public enum DisplayCharacter {
     CORNER('+'), WALL_VERTICAL('|'), WALL_HORIZONTAL('-'), PLAYER('O'), EMPTY(' '), EXIT('@'), MONSTER('X');

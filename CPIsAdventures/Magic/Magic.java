@@ -1,4 +1,4 @@
-package enterGameNameHere.Magic;
+package CPIsAdventures.Magic;
 
 
 public interface Magic {

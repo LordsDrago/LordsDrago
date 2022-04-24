@@ -1,4 +1,4 @@
-package enterGameNameHere.Terrain;
+package CPIsAdventures.Terrain;
 
 public enum Maps {
     MAP1(new String[] {

@@ -1,8 +1,9 @@
-package enterGameNameHere.Races;
+package CPIsAdventures.Races;
 import java.util.ArrayList;
 import java.util.Random;
-import enterGameNameHere.Magic.Magic;
-import enterGameNameHere.Magic.Spell;
+
+import CPIsAdventures.Magic.Magic;
+import CPIsAdventures.Magic.Spell;
 
 public class Goblin extends Evil implements Magic {
     private final static String elementList[] = {"fire","water","grass"};

@@ -1,6 +1,7 @@
-package enterGameNameHere;
+package CPIsAdventures;
 import java.util.Scanner;
-import enterGameNameHere.Races.*;
+
+import CPIsAdventures.Races.*;
  
 public class Battle {
    /**
